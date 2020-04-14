@@ -1,0 +1,13 @@
+Bounded Context
+
+-Manage Reservation
+	Entity : >Table
+		 >Reservation
+-Manage Order
+	Entity : >Table
+		 >Employee
+		 >OrderMenu
+-Manage Inventory
+	Entity : >Inventory
+-Manage Employee
+	Entity : >Employee
