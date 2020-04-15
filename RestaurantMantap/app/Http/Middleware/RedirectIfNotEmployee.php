@@ -7,8 +7,8 @@ class RedirectIfNotEmployee
 {
     public function handle($request, Closure $next, $guard="employee")
     {
-        if(!auth()->guard($guard)->check()) {
-            return redirect(route('employee.signin'));
+        if(!Auth()->guard($guard)->check()) {
+            return redirect(route('signin'));
         }
         return $next($request);
     }
