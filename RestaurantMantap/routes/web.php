@@ -11,20 +11,18 @@
 |
 */
 Route::redirect('lara-admin','login');
-//Route::get('/','auth\SigninController@index')->name('signin');
 Route::get('/welcome','HomeController@index')->name('welcome');
-//Route::get('/waiter','Employee\WaiterController@index')->name('waiter.mainwaiter');
-//Route::get('/reserve','WaiterController@reserve')->name('reserve');
-//Route::get('/order','WaiterController@order')->name('ordermenu');
 Route::post('/reservation','ReservationController@reserve')->name('reservation.reserve');
 Route::post('/contact','ContactController@sendMessage')->name('contact.send');
 
 //login for employee
-Route::get('/', 'Auth\SigninController@showLoginForm')->name('employee.signin');
-Route::post('/employee/signin', 'Auth\SigninController@login')->name('employee.signin.post');
-Route::post('/employee/signout', 'Auth\SigninController@logout')->name('employee.signout');
+Route::get('/', 'Auth\SigninController@showLoginForm')->name('signin');
+Route::post('/signin', 'Auth\SigninController@login')->name('signin.post');
+Route::post('/signout', 'Auth\SigninController@logout')->name('signout');
 Route::group(['prefix'=>'employee','middleware'=>'employee','namespace'=>'Employee'], function() {
     Route::get('waiter/mainwaiter', 'WaiterController@index')->name('employee.waiter.mainwaiter');
+    Route::get('waiter/ordermenu', 'WaiterController@order')->name('employee.waiter.ordermenu');
+    Route::get('waiter/reserve', 'WaiterController@reserve')->name('employee.waiter.reserve');
 });
 
 

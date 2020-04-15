@@ -17,7 +17,7 @@
                             <h4 class="title">Sign In</h4>
                         </div>
                         <div class="card-content">
-                            <form method="POST" action="{{ route('employee.signin.post') }}">
+                            <form method="POST" action="{{ route('signin.post') }}">
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-12">

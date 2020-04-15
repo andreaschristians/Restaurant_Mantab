@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class SigninController extends Controller
 {
@@ -40,11 +41,18 @@ class SigninController extends Controller
     
     public function guard()
     {
-     return Auth::guard('employee');
+        return Auth::guard('employee');
     }
     
     public function showLoginForm()
     {
         return view('auth.signin');
+    }
+    
+    public function logout()
+    {
+        Auth::logout();
+        Session::flush();
+        return redirect('/');
     }
 }
