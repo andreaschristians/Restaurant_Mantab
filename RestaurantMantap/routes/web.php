@@ -21,7 +21,8 @@ Route::post('/signin', 'Auth\SigninController@login')->name('signin.post');
 Route::post('/signout', 'Auth\SigninController@logout')->name('signout');
 Route::group(['prefix'=>'employee','middleware'=>'employee','namespace'=>'Employee'], function() {
     Route::get('waiter/mainwaiter', 'WaiterController@index')->name('employee.waiter.mainwaiter');
-    Route::get('waiter/ordermenu', 'WaiterController@order')->name('employee.waiter.ordermenu');
+    Route::get('waiter/choosetable', 'WaiterController@table')->name('employee.waiter.choosetable');
+    Route::get('waiter/ordermenu/{number}', 'WaiterController@order')->name('employee.waiter.ordermenu');
     Route::get('waiter/reserve', 'WaiterController@reserve')->name('employee.waiter.reserve');
 });
 

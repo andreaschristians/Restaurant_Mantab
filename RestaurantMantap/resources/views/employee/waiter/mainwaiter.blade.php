@@ -50,7 +50,7 @@
                         <p class="font-weight-regular"><font size="4">{{ Auth::guard('employee')->user()->name }}</font></p>
                     </li>
                     <li class="nav-item">
-                        <p class="font-weight-regular"><font size="4">Waiter</font></p>
+                        <p class="font-weight-regular"><font size="4">{{ Auth::guard('employee')->user()->job }}</font></p>
                     </li>
                 </ul>
             </li>
@@ -67,7 +67,7 @@
     
     <div class="main-choose" >
         <div class="choose1">
-            <a href="{{ route('employee.waiter.ordermenu') }}">
+            <a href="{{ route('employee.waiter.choosetable') }}">
                 <img src="{{ asset('frontend/images/Order.png') }}" style="width: 470px;height: 400px;">
                 <p class="text-choose" style="color: black;"><font size="5">Order</font></p>
             </a>

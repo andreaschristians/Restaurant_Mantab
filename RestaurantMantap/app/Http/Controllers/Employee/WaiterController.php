@@ -1,7 +1,11 @@
 <?php
 
 namespace App\Http\Controllers\Employee;
+
+use App\Table;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class WaiterController extends Controller
 {
@@ -18,10 +22,20 @@ class WaiterController extends Controller
      */
     public function index()
     {
-        return view('employee.waiter.mainwaiter');
+        if (Auth::guard('employee')->user()->job == "Waiter/Waitress") {
+            return view('employee.waiter.mainwaiter');
+        } else {
+//            return view('welcome');
+        }
     }
 
-    public function order()
+    public function table()
+    {   
+        $tables = Table::all();
+        return view('employee.waiter.choosetable' ,compact('tables'));
+    }
+    
+    public function order($number)
     {
         return view('employee.waiter.ordermenu');
     }
