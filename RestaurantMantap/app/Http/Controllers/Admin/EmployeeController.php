@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Employee;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
 
 class EmployeeController extends Controller
@@ -47,7 +48,7 @@ class EmployeeController extends Controller
         $employee = new Employee();
         $employee->name = $request->name;
         $employee->email = $request->email;
-        $employee->password = $request->password;
+        $employee->password = Hash::make($request->password);
         $employee->job = $request->job;
         $employee->salary = $request->salary;
         $employee->save();
@@ -94,7 +95,7 @@ class EmployeeController extends Controller
         ]);
         $employee = Employee::find($id);
         $employee->name = $request->name;
-        $employee->password = $request->password;
+        $employee->password = Hash::make($request->password);
         $employee->job = $request->job;
         $employee->salary = $request->salary;
         $employee->save();

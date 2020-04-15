@@ -17,5 +17,9 @@ class DatabaseSeeder extends Seeder
         $user->email = 'admin@programmingkit.net';
         $user->password = bcrypt('password');
         $user->save();
+        
+        $employee = new Employee();
+        $user->password = bcrypt('password');
+        $user->save();
     }
 }

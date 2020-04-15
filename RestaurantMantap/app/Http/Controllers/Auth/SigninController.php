@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
 
 class SigninController extends Controller
 {
@@ -25,12 +26,7 @@ class SigninController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/welcome';
-
-    public function index()
-    {
-        return view('auth.signin');
-    }
+    protected $redirectTo = '/employee/waiter/mainwaiter';
 
     /**
      * Create a new controller instance.
@@ -40,5 +36,15 @@ class SigninController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+    
+    public function guard()
+    {
+     return Auth::guard('employee');
+    }
+    
+    public function showLoginForm()
+    {
+        return view('auth.signin');
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Employee;
+use App\Http\Controllers\Controller;
 
 class WaiterController extends Controller
 {
@@ -17,16 +18,16 @@ class WaiterController extends Controller
      */
     public function index()
     {
-        return view('waiter.mainwaiter');
+        return view('employee.waiter.mainwaiter');
     }
 
     public function order()
     {
-        return view('waiter.ordermenu');
+        return view('employee.waiter.ordermenu');
     }
     public function reserve()
     {
-        return view('waiter.reserve');
+        return view('employee.waiter.reserve');
     }
 }
 
