@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Employee;
 
 use App\Table;
-use App\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -38,9 +37,7 @@ class WaiterController extends Controller
     
     public function order($number)
     {
-        $tables = Table::all();
-        $categories = Category::all();
-        return view('employee.waiter.ordermenu' ,compact('categories'));
+        return view('employee.waiter.ordermenu');
     }
     public function reserve()
     {

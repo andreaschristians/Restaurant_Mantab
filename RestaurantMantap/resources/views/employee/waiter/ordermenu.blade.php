@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Order</title>
+	<title>Kasir</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 
@@ -111,26 +111,28 @@
         </ul>
     </nav>
 
-    <div class="nav-search">
-        <ul class="menu-type">
-            <li class="menu-type-list"><a href="#">All</a></li>
-            @foreach($categories as $category)
-                <li class="menu-type-list"><a href="#">{{ $category->name }}</a></li>
-            @endforeach
-            <li class="menu-type-list"><a href="#">
-                    <form action="#" method="#">
-                        <input type="text" name="search" placeholder="  Search . . .">
-                    </form>
-                </a>
-            </li>
-        </ul>
-    </div>
+		<div class="nav-search">
+			<ul class="menu-type">
+		      <li class="menu-type-list"><a href="#">Appetizer</a></li>
+		      <li class="menu-type-list"><a href="#">Main Course</a></li>
+		      <li class="menu-type-list"><a href="#">Dessert</a></li>
+		      <li class="menu-type-list"><a href="#">Snack</a></li>
+		      <li class="menu-type-list"><a href="#">Beverage</a></li>
+		      <li class="menu-type-list"><a href="#">
+				<form action="#" method="#">
+		    		<input type="text" name="search" placeholder="  Search . . .">
+		   		</form>
+		      </a></li>
+		    </ul>
+		    
+		</div>
 
-    <div class="menu-list">
-        <div class="menu">
-            <div class="food-image"></div>
-            <p class="food-info"> Nasi <br>2000</br ></p>
-        </div>
-    </div>
-</body>
+		<div class="menu-list">
+			<div class="menu">
+				<div class="food-image">
+				</div>
+					<p class="food-info"> Nasi <br>2000</br ></p>
+			</div>
+		</div>
+	</body>
 </html>
