@@ -27,7 +27,7 @@ class SigninController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/employee/waiter/mainwaiter';
+    protected $redirectTo = '/employee';
     
     /**
      * Create a new controller instance.

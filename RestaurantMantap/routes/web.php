@@ -20,20 +20,24 @@ Route::get('/', 'Auth\SigninController@showLoginForm')->name('signin');
 Route::post('/signin', 'Auth\SigninController@login')->name('signin.post');
 Route::post('/signout', 'Auth\SigninController@logout')->name('signout');
 Route::group(['prefix'=>'employee','middleware'=>'employee','namespace'=>'Employee'], function() {
+    Route::get('/', 'EmployeeController@index')->name('employee');
+    
     Route::get('waiter/mainwaiter', 'WaiterController@index')->name('employee.waiter.mainwaiter');
     Route::get('waiter/choosetable', 'WaiterController@table')->name('employee.waiter.choosetable');
     Route::get('waiter/ordermenu/{number}', 'WaiterController@order')->name('employee.waiter.ordermenu');
     Route::get('waiter/reserve', 'WaiterController@reserve')->name('employee.waiter.reserve');
+    
+    //cashier
+    Route::get('cashier/maincashier','CashierController@index')->name('employee.cashier.maincashier');
+    //cashier billing
+    Route::get('cashier/billing','CashierController@billing')->name('employee.cashier.billing');
+    Route::get('cashier/closebill','CashierController@closebill')->name('employee.cashier.closebill');
+    //cashier payment
+    Route::get('cashier/paytable','CashierController@paytable')->name('employee.cashier.paytable');
+    Route::get('cashier/payment','CashierController@payment')->name('employee.cashier.payment');
 });
 
-//cashier
-Route::get('employee/cashier/maincashier','Employee\CashierController@index')->name('employee.cashier.maincashier');
-//cashier billing
-Route::get('employee/cashier/billing','Employee\CashierController@billing')->name('employee.cashier.billing');
-Route::get('employee/cashier/closebill','Employee\CashierController@closebill')->name('employee.cashier.closebill');
-//cashier payment
-Route::get('employee/cashier/paytable','Employee\CashierController@paytable')->name('employee.cashier.paytable');
-Route::get('employee/cashier/payment','Employee\CashierController@payment')->name('employee.cashier.payment');
+
 
 Auth::routes();
 
