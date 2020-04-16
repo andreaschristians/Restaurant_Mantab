@@ -41,9 +41,9 @@ class TableController extends Controller
             'status' => 'required',
         ]);
         $table = new Table();
-        $table->status = $request->status;
-        $table->position_x = $request->position_x;
-        $table->position_y = $request->position_y;
+        $table->status = "Empty";
+        $table->position_x = "0";
+        $table->position_y = "0";
         $table->save();
         return redirect()->route('table.index')->with('successMsg','Table Successfully Saved');
     }

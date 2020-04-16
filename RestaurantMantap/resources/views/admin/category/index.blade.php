@@ -25,7 +25,6 @@
                                 <th>Slug</th>
                                 <th>Created At</th>
                                 <th>Updated At</th>
-                                <th>Action</th>
                                 </thead>
                                 <tbody>
                                     @foreach($categories as $key=>$category)

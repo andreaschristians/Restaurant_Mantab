@@ -42,7 +42,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <a href="{{ route('table.create') }}" class="btn btn-primary">Add New</a>
+                    <a href="{{ route('table.create') }}"class="btn btn-primary">Add New</a>
                     <a id="edit-on" class="btn btn-info btn-sm" onclick="edit()"><i class="material-icons">mode_edit</i></a>
                     <a id="edit-off" class="btn btn-info btn-sm" onclick="edit()" style="display:none"><i class="material-icons">mode_edit</i></a>
                     <a id="edit-x" class="btn btn-info btn-sm" style="display:none; opacity: 0.2"><i class="material-icons">mode_edit</i></a>
@@ -110,11 +110,11 @@
             });
 
             //table color
-            if (table.status == "empty") {
+            if (table.status == "Empty") {
                 document.getElementById(id).style.background = "#2d9e2f";
                 document.getElementById(id+"-edit").style.background = "#2d9e2f";
                 document.getElementById(id+"-delete").style.background = "#2d9e2f";
-            } else if (table.status == "reserved") {
+            } else if (table.status == "Reserved") {
                 document.getElementById(id).style.background = "#8d8d8d";
                 document.getElementById(id+"-edit").style.background = "#8d8d8d";
                 document.getElementById(id+"-delete").style.background = "#8d8d8d";

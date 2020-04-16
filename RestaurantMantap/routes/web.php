@@ -47,7 +47,7 @@ Route::group(['prefix'=>'admin','middleware'=>'auth','namespace'=>'Admin'], func
     Route::resource('employee','EmployeeController');
     Route::resource('slider','SliderController');
     Route::resource('category','CategoryController');
-    Route::resource('item','ItemController');
+    Route::resource('menu','MenuController');
     Route::resource('table','TableController');
     Route::get('reservation','ReservationController@index')->name('reservation.index');
     Route::post('reservation/{id}','ReservationController@status')->name('reservation.status');

@@ -25,22 +25,16 @@
                     <p>Table</p>
                 </a>
             </li>
-            <li class="{{ Request::is('admin/slider*') ? 'active': '' }}">
-                <a href="{{ route('slider.index') }}">
-                    <i class="material-icons">slideshow</i>
-                    <p>Sliders</p>
-                </a>
-            </li>
             <li class="{{ Request::is('admin/category*') ? 'active': '' }}">
                 <a href="{{ route('category.index') }}">
                     <i class="material-icons">content_paste</i>
                     <p>Categories</p>
                 </a>
             </li>
-            <li class="{{ Request::is('admin/item*') ? 'active': '' }}">
-                <a href="{{ route('item.index') }}">
+            <li class="{{ Request::is('admin/menu*') ? 'active': '' }}">
+                <a href="{{ route('menu.index') }}">
                     <i class="material-icons">library_books</i>
-                    <p>Items</p>
+                    <p>Menus</p>
                 </a>
             </li>
             <li class="{{ Request::is('admin/reservation*') ? 'active': '' }}">
@@ -49,13 +43,6 @@
                     <p>Reservations</p>
                 </a>
             </li>
-            <li class="{{ Request::is('admin/contact*') ? 'active': '' }}">
-                <a href="{{ route('contact.index') }}">
-                    <i class="material-icons">message</i>
-                    <p>Contact Message</p>
-                </a>
-            </li>
-
         </ul>
     </div>
 </div>
