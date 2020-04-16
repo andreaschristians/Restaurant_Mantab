@@ -71,13 +71,13 @@
     
     <div class="main-choose" >
         <div class="choose1">
-            <a href="{{ route('employee.cashier.billing') }}">
+            <a href="#" >
                 <img src="{{ asset('frontend/images/billing.png') }}" style="width: 345px;height: 350px;">
                 <p class="text-choose" style="margin-top: 20px; color: black"><font size="5">Billing</font></p>
             </a>
         </div>
         <div class="choose2">
-            <a href="{{ route('employee.cashier.paytable') }}">
+            <a href="#">
                 <img src="{{ asset('frontend/images/payment.png') }}" style="width: 340px;height: 345px;">
                 <p class="text-choose" style="margin-top: 20px; color: black"><font size="5">Payment</font></p>
             </a>

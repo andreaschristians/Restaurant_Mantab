@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\Employee;
 
-use App\Table;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
-class WaiterController extends Controller
+class CashierController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -22,7 +21,25 @@ class WaiterController extends Controller
      */
     public function index()
     {
-        retrun view('employee.cashier.maincashier')
+        return view('employee.cashier.maincashier');
+    }
+    //billing
+    public function billing()
+    {
+        return view('employee.cashier.billing');
+    }
+    public function closebill()
+    {
+        return view('employee.cashier.closebill');
+    }
+    //payment
+    public function paytable()
+    {
+        return view('employee.cashier.paytable');
+    }
+    public function payment()
+    {
+        return view('employee.cashier.payment');
     }
 }
 
