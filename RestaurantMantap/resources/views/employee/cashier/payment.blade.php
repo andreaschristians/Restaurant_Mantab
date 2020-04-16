@@ -28,6 +28,16 @@
         border-radius: 10px;
         margin: auto;
         margin-left: 80px;
+        display: inline-block;
+      }
+      .input-cash{
+        width: 20%;
+        height: 420px;
+        background-color: white;
+        display: inline-block;
+        border-radius: 10px;
+        margin-left: 20px;
+        vertical-align: top;
       }
       .close-bill{
         margin: 0;
@@ -46,17 +56,12 @@
         border-bottom-left-radius: 10px;
         border-bottom-right-radius: 10px;
       }
-      .input-cash{
-        width: 10%;
-        height: 400px;
-        background-color: white;
-      }
-      table{
+      #table-list{
         border-collapse: collapse;
         margin-left: 30px;
         margin-top: 10px;
       }
-      td{
+      #list td{
         border-bottom: 2px solid #ddd;
         padding-top: 10px;
       }
@@ -79,6 +84,17 @@
         padding-left: 10px;
 
       }
+      #pay{
+        text-align: center;
+        margin-top: 10px;
+      }
+      #payment{
+        text-align: center;
+      }
+      #payment input{
+        border: 0;
+        border-bottom: 1px solid #ddd;
+      }
       button{
         background-color: #08b0bd; 
         width: 11%;
@@ -99,12 +115,8 @@
       tr:hover{
         background-color: rgba(0,0,0,0.07);
       }
-      a:hover{
-        text-decoration: none;
-        color: red;
-      }
       button:hover{
-        background-color: #b81d1d;
+        background-color: #0374a8;
       }
       ::-webkit-scrollbar {
         width: 10px;
@@ -157,12 +169,12 @@
       <div class="list-bill-show">
 
         <div class="list-table">
-          <table>
+          <table id="table-list">
 
             <?php
               for ($i = 1; $i <= 10; $i++) {
                 echo '
-                <tr>
+                <tr id="list">
                   <td id="food">1. Asparagus</td>
                   <td id="qty">1x</td>
                   <td id="price">$100</td>
@@ -182,8 +194,10 @@
       </div>
     
       <div class="input-cash">
-        
-
+        <p id="pay">Input Cash</p>
+        <form id="payment">
+          <input type="number" name="paycash" placeholder="00000"></input>
+        </form>
       </div>
     </div>
 </body>
