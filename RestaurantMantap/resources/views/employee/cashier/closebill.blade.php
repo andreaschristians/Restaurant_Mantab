@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Kasir</title>
+  <title>Close Bill</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 
@@ -30,7 +30,7 @@
       }
       .close-bill{
         margin: 0;
-        margin-left: 10%;
+        margin-left: 7%;
         padding: 0;
         font-style: italic;
         font-weight: bold;
@@ -55,11 +55,11 @@
         padding-top: 10px;
       }
       #food{
-        padding-right: 555px;
+        padding-right: 595px;
         border-right: 2px solid #ddd;
       }
       #qty{
-        padding-right: 50px;
+        padding-right: 20px;
         padding-left: 10px;
         border-right: 2px solid #ddd;
       }
@@ -152,81 +152,29 @@
 
         <div class="list-table">
           <table>
-            <tr>
-              <td id="food">1. Asparagus</td>
-              <td id="qty">1x</td>
-              <td id="price">$100</td>
-              <td id="total">$100</td>
-            </tr>
-            <tr>
-              <td id="food">1. Asparagus</td>
-              <td id="qty">1x</td>
-              <td id="price">$100</td>
-              <td id="total">$100</td>
-            </tr>
-            <tr>
-              <td id="food">1. Asparagus</td>
-              <td id="qty">1x</td>
-              <td id="price">$100</td>
-              <td id="total">$100</td>
-            </tr>
-            <tr>
-              <td id="food">1. Asparagus</td>
-              <td id="qty">1x</td>
-              <td id="price">$100</td>
-              <td id="total">$100</td>
-            </tr>
-            <tr>
-              <td id="food">1. Asparagus</td>
-              <td id="qty">1x</td>
-              <td id="price">$100</td>
-              <td id="total">$100</td>
-            </tr>
-            <tr>
-              <td id="food">1. Asparagus</td>
-              <td id="qty">1x</td>
-              <td id="price">$100</td>
-              <td id="total">$100</td>
-            </tr>
-            <tr>
-              <td id="food">1. Asparagus</td>
-              <td id="qty">1x</td>
-              <td id="price">$100</td>
-              <td id="total">$100</td>
-            </tr>
-            <tr>
-              <td id="food">1. Asparagus</td>
-              <td id="qty">1x</td>
-              <td id="price">$100</td>
-              <td id="total">$100</td>
-            </tr>
-            <tr>
-              <td id="food">1. Asparagus</td>
-              <td id="qty">1x</td>
-              <td id="price">$100</td>
-              <td id="total">$100</td>
-            </tr>
-            <tr>
-              <td id="food">1. Asparagus</td>
-              <td id="qty">1x</td>
-              <td id="price">$100</td>
-              <td id="total">$100</td>
-            </tr>
-            <tr>
-              <td id="food">1. Asparagus</td>
-              <td id="qty">1x</td>
-              <td id="price">$100</td>
-              <td id="total">$100</td>
-            </tr>
+            <?php
+              for ($i = 1; $i <= 10; $i++) {
+                echo '
+                <tr>
+                  <td id="food">1. Asparagus</td>
+                  <td id="qty">1x</td>
+                  <td id="price">$100</td>
+                  <td id="total">$100</td>
+                </tr>
+                ';
+              }
+            ?>
           </table>
           </div>
-
+            
           <div class="total">
             <button>Close Bill</button>
           </div>
 
       </div>
-    
+      <div>
+        
+      </div>
     </div>
 </body>
 </html>
