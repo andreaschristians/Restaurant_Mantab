@@ -45,15 +45,12 @@ Auth::routes();
 Route::group(['prefix'=>'admin','middleware'=>'auth','namespace'=>'Admin'], function (){
     Route::get('dashboard', 'DashboardController@index')->name('admin.dashboard');
     Route::resource('employee','EmployeeController');
-    Route::resource('slider','SliderController');
+    Route::resource('table','TableController');
     Route::resource('category','CategoryController');
     Route::resource('menu','MenuController');
-    Route::resource('table','TableController');
+    Route::resource('order','OrderController');
+    
     Route::get('reservation','ReservationController@index')->name('reservation.index');
     Route::post('reservation/{id}','ReservationController@status')->name('reservation.status');
     Route::delete('reservation/{id}','ReservationController@destory')->name('reservation.destory');
-    
-    Route::get('contact','ContactController@index')->name('contact.index');
-    Route::get('contact/{id}','ContactController@show')->name('contact.show');
-    Route::delete('contact/{id}','ContactController@destroy')->name('contact.destroy');
 });

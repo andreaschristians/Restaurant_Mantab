@@ -13,17 +13,16 @@
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="card card-stats">
                         <div class="card-header" data-background-color="orange">
-                            <i class="material-icons">content_copy</i>
+                        <img class="img-responsive img-thumbnail" src="{{ asset('uploads/menu/'.$favoritemenu[0]->image) }}" style="height: 100px; width: 100px" alt="">
                         </div>
                         <div class="card-content">
-                            <p class="category">Category / Item</p>
-                            <h3 class="title">{{ $categoryCount }}/{{ $itemCount }}
-                            </h3>
+                            <p class="category">Favorite Menu</p>
+                            <h3 class="title">{{ $favoritemenu[0]->name }}</h3>
                         </div>
                         <div class="card-footer">
                             <div class="stats">
                                 <i class="material-icons text-danger">info</i>
-                                <a href="#pablo">Total Categories and Items</a>
+                                <a href="#pablo">Total order this month : {{ $favoritecount }}</a>
                             </div>
                         </div>
                     </div>
@@ -35,7 +34,7 @@
                         </div>
                         <div class="card-content">
                             <p class="category">Reservation</p>
-                            <h3 class="title">{{ $reservations->count() }}</h3>
+                            <h3 class="title">{{ $orders->count() }}</h3>
                         </div>
                         <div class="card-footer">
                             <div class="stats">
@@ -50,54 +49,21 @@
                     @include('layouts.partial.msg')
                     <div class="card">
                         <div class="card-header" data-background-color="purple">
-                            <h4 class="title">Reservations</h4>
+                            <h4 class="title">Reports</h4>
                         </div>
                         <div class="card-content table-responsive">
                             <table id="table" class="table"  cellspacing="0" width="100%">
                                 <thead class="text-primary">
                                 <th>ID</th>
-                                <th>Name</th>
-                                <th>Phone</th>
-                                <th>Status</th>
-                                <th>Action</th>
+                                <th>Date</th>
+                                <th>Total</th>
                                 </thead>
                                 <tbody>
-                                @foreach($reservations as $key=>$reservation)
+                                @foreach($orders as $key=>$order)
                                     <tr>
                                         <td>{{ $key + 1 }}</td>
-                                        <td>{{ $reservation->name }}</td>
-                                        <td>{{ $reservation->phone }}</td>
-                                        <th>
-                                            @if($reservation->status == true)
-                                                <span class="label label-info">Confirmed</span>
-                                            @else
-                                                <span class="label label-danger">not Confirmed yet</span>
-                                            @endif
-
-                                        </th>
-                                        <td>
-                                            @if($reservation->status == false)
-                                                <form id="status-form-{{ $reservation->id }}" action="{{ route('reservation.status',$reservation->id) }}" style="display: none;" method="POST">
-                                                    @csrf
-                                                </form>
-                                                <button type="button" class="btn btn-info btn-sm" onclick="if(confirm('Are you verify this request by phone?')){
-                                                        event.preventDefault();
-                                                        document.getElementById('status-form-{{ $reservation->id }}').submit();
-                                                        }else {
-                                                        event.preventDefault();
-                                                        }"><i class="material-icons">done</i></button>
-                                            @endif
-                                            <form id="delete-form-{{ $reservation->id }}" action="{{ route('reservation.destory',$reservation->id) }}" style="display: none;" method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                            </form>
-                                            <button type="button" class="btn btn-danger btn-sm" onclick="if(confirm('Are you sure? You want to delete this?')){
-                                                    event.preventDefault();
-                                                    document.getElementById('delete-form-{{ $reservation->id }}').submit();
-                                                    }else {
-                                                    event.preventDefault();
-                                                    }"><i class="material-icons">delete</i></button>
-                                        </td>
+                                        <td>{{ $order->name }}</td>
+                                        <td>{{ $order->phone }}</td>
                                     </tr>
                                 @endforeach
                                 </tbody>
