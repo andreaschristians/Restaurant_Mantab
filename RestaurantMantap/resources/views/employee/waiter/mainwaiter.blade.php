@@ -13,20 +13,21 @@
   		.main-choose{
   			width: 80%; 
   			height: 500px;
-  			background-color: rgba(0,0,0,0.07); 
+  			background-color: #ffc107; 
   			margin: auto; 
-  			margin-top: 75px;
-  			padding-top: 50px;
+  			margin-top: 100px;
+  			padding-top: 20px;
   			border-radius: 10px;
   			opacity: 90%;
   		}
   		.choose1{
   			float: left;
-  			margin-left: 270px;
-          }
+  			margin-left: 100px;
+  		}
   		.choose2{
   			float: left;
   			margin-left: 100px;
+  			margin-top: 25px;
   		}
   		.text-choose{
   			text-align: center;
@@ -55,7 +56,7 @@
             </li>
           <li class="nav-item">
             <a href="{{ route('signout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                <img src="{{ asset('frontend/images/back_arrow.png') }}" style="width: 50px;height: 50px;margin-left: 950px;">
+                <img src="{{ asset('frontend/images/back_arrow.png') }}" style="width: 50px;height: 50px;margin-left: 850px;">
             </a>
             <form id="logout-form" method="POST" action="{{ route('signout') }}" style="display: none">
                 @csrf
@@ -67,13 +68,13 @@
     <div class="main-choose" >
         <div class="choose1">
             <a href="{{ route('employee.waiter.choosetable') }}">
-                <img src="{{ asset('frontend/images/Order.png') }}" style="width: 345px;height: 350px;">
-                <p class="text-choose" style="margin-top: 20px; color: black"><font size="5">Order</font></p>
+                <img src="{{ asset('frontend/images/Order.png') }}" style="width: 470px;height: 400px;">
+                <p class="text-choose" style="color: black;"><font size="5">Order</font></p>
             </a>
         </div>
         <div class="choose2">
             <a href="{{ route('employee.waiter.reserve') }}">
-                <img src="{{ asset('frontend/images/Reserve.png') }}" style="width: 340px;height: 345px;">
+                <img src="{{ asset('frontend/images/Reserve.png') }}" style="width: 350px;height: 350px;">
                 <p class="text-choose" style="margin-top: 20px; color: black"><font size="5">Reserve</font></p>
             </a>
         </div>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Reserve</title>
+	<title>Kasir</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 
@@ -72,7 +72,7 @@
   			display: inline-block;
   		}
   		.legend{
-  			margin-left: 1280px;
+  			margin-left: 1120px;
   			margin-top: 69px;
   		}
   		.info-legend{
@@ -105,9 +105,9 @@
 		    	</ul>
 		   </li>
 		   <li class="nav-item">
-			   	<a href="/employee/waiter/mainwaiter">
+			   	<a href="/waiter">
 			      	<img src="{{ asset('frontend/images/back_arrow.png') }}"
-			      	style="width: 50px;height: 50px;margin-left: 1000px;">
+			      	style="width: 50px;height: 50px;margin-left: 850px;">
 			    </a>
 		   </li>
 		 </ul>
