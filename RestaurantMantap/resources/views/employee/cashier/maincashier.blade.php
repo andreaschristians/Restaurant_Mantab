@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Waiter</title>
+	<title>Kasir</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 
@@ -16,13 +16,13 @@
   			background-color: rgba(0,0,0,0.07); 
   			margin: auto; 
   			margin-top: 75px;
-  			padding-top: 50px;
+  			padding-top: 20px;
   			border-radius: 10px;
   			opacity: 90%;
   		}
   		.choose1{
   			float: left;
-  			margin-left: 270px;
+  			margin-left: 100px;
           }
   		.choose2{
   			float: left;
@@ -55,7 +55,7 @@
             </li>
           <li class="nav-item">
             <a href="{{ route('signout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                <img src="{{ asset('frontend/images/back_arrow.png') }}" style="width: 50px;height: 50px;margin-left: 950px;">
+                <img src="{{ asset('frontend/images/back_arrow.png') }}" style="width: 50px;height: 50px;margin-left: 850px;">
             </a>
             <form id="logout-form" method="POST" action="{{ route('signout') }}" style="display: none">
                 @csrf
@@ -66,7 +66,7 @@
     
     <div class="main-choose" >
         <div class="choose1">
-            <a href="{{ route('employee.waiter.choosetable') }}">
+            <a href="{{ route('employee.waiter.choosetable') }}" class="circle">
                 <img src="{{ asset('frontend/images/Order.png') }}" style="width: 345px;height: 350px;">
                 <p class="text-choose" style="margin-top: 20px; color: black"><font size="5">Order</font></p>
             </a>

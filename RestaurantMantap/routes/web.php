@@ -27,6 +27,8 @@ Route::group(['prefix'=>'employee','middleware'=>'employee','namespace'=>'Employ
 });
 
 
+Route::get('/welcome','Employee\CashierController@index')->name('maincashier');
+
 Auth::routes();
 
 //login for admin
