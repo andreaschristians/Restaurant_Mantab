@@ -24,6 +24,8 @@
         width: 70%;
         height: 420px;
         padding-top: 1%;
+        padding-right: 20px;
+        padding-left: 20px;
         background-color: white;
         border-radius: 10px;
         margin: auto;
@@ -38,6 +40,7 @@
         border-radius: 10px;
         margin-left: 20px;
         vertical-align: top;
+        text-align: center;
       }
       .close-bill{
         margin: 0;
@@ -47,7 +50,7 @@
         font-weight: bold;
       }
       .list-table{
-        height: 410px;
+        height: 408px;
         overflow: auto;
       }
       .total{
@@ -58,12 +61,14 @@
       }
       table{
         border-collapse: collapse;
-        margin-left: 30px;
         margin-top: 10px;
       }
       td{
         border-bottom: 2px solid #ddd;
         padding: 3px;
+      }
+      th{
+        padding-bottom: 5px;
       }
       #number{
         border-right: 2px solid #ddd;
@@ -89,29 +94,25 @@
 
       }
       #pay{
-        text-align: center;
         margin: 0;
-        margin-top: 10px;
+        margin-top: 15px;
       }
       #total-pay{
         margin: 0;
-        margin-top: 10px;
-      }
-      #payment{
-        text-align: center;
+        margin-top: 5px;
       }
       #payment input{
-        border: 0;
-        border-bottom: 1px solid #ddd;
+        border-radius: 5px;
+        border: 1.5px solid #ddd;
       }
       button{
         background-color: #08b0bd; 
-        width: 11%;
+        width: 30%;
         height: 32px;
         border: none;
         color: white;
-        margin-left: 87%;
-        margin-top: 1.3%;
+        margin-left: 1%;
+        margin-top: 4%;
         text-align: center;
         text-decoration: none;
         text-decoration-color: white;
@@ -126,6 +127,9 @@
       }
       button:hover{
         background-color: #0374a8;
+      }
+      input{
+        text-align: center;
       }
       ::-webkit-scrollbar {
         width: 10px;
@@ -196,13 +200,13 @@
       </div>
     
       <div class="input-cash">
-        <p id="pay">Input Cash</p>
+        <p id="pay">Amount</p>
         <form id="payment" method="POST" action="{{ route('employee.cashier.paymentstore') }}">
              @csrf
             <input type="number" name="amount">
             <br>
             <p id="total-pay">Total</p>
-            <input type="text" value="{{ $total }}" name="total">
+            <input type="text" value="{{ $total }}" name="total"readonly>
             <input type="hidden" value="{{ $bill_id }}" name="bill_id">
             <input type="hidden" value="{{ $order_id }}" name="order_id">
             <button type="submit">Print</button>
