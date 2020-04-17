@@ -97,13 +97,14 @@
     <div class="table-payment" >
           <?php
             for ($i = 1; $i <= 10; $i++) {
-                echo '
-                   <a href={{ route(employee.cashier.payment)}}>
+                ?>
+                   <a href={{route('employee.cashier.payment')}}>
                       <div class="table-num">
                         <p>TABLE <br>1</p></br></p>
                       </div>
-                  </a>
-                ';
+                    </a>
+                
+                <?php
               }
             ?>
     </div>
