@@ -49,7 +49,7 @@ class WaiterController extends Controller
             $order = new Order();
             $table = Table::find($tableNumber);
             
-            $order->status = 1;
+            $order->status = "Open";
             $order->employee_id = $employeeId;
             $order->table_number = $tableNumber;
             $order->save();
@@ -61,7 +61,7 @@ class WaiterController extends Controller
             $table = Table::find($tableNumber);
             $reservation = Reservation::where('table_number', $tableNumber)->where('status', 1)->first();
             
-            $order->status = 1;
+            $order->status = "Open";
             $order->employee_id = $employeeId;
             $order->table_number = $tableNumber;
             $order->save();
@@ -73,7 +73,7 @@ class WaiterController extends Controller
             $reservation->save();
         }
         
-        $order = Order::where('status', 1)->where('table_number', $tableNumber)->first()->id;
+        $order = Order::where('status', "Open")->where('table_number', $tableNumber)->first()->id;
         $ordermenus = Ordermenu::where('order_id', $order)->get();
         return view('employee.waiter.ordermenu' ,compact('categories', 'menus', 'order', 'ordermenus'));
     }

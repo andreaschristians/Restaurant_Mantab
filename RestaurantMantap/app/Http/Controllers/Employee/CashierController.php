@@ -38,7 +38,7 @@ class CashierController extends Controller
     }
     public function closebill($table_number)
     {
-        $order_id = Order::where('table_number', $table_number)->where('status', 1)->first()->id;
+        $order_id = Order::where('table_number', $table_number)->where('status', "Open")->first()->id;
         $ordermenus = Ordermenu::where('order_id', $order_id)->get();
         $total = 0;
         return view('employee.cashier.closebill', compact('ordermenus', 'order_id', 'total'));
@@ -46,7 +46,7 @@ class CashierController extends Controller
     }
     public function billstore($order_id, $total) {
         $order = Order::find($order_id);
-        $order->status = 0;
+        $order->status = "Close";
         $order->save();
         
         $bill = new Bill();
@@ -60,8 +60,9 @@ class CashierController extends Controller
     //payment
     public function paytable()
     {
-        $orders = Order::all()->where('status', 0);
-        return view('employee.cashier.paytable', compact('orders'));
+        $orders = Order::all()->where('status', "Close");
+        $payments = Payment::all();
+        return view('employee.cashier.paytable', compact('orders', 'payments'));
     }
     public function payment($order_id)
     {
@@ -83,6 +84,11 @@ class CashierController extends Controller
         $table = Table::find($tablenumber);
         $table->status = "Empty";
         $table->save();
+        
+        $order = Order::find($request->order_id);
+        $order->status = "Paid";
+        $order->save();
+        
         return redirect()->route('employee.cashier.maincashier'); 
     }
 }
