@@ -113,7 +113,7 @@
                                         <td>{{ $key + 1 }}</td>
                                         <td>{{ $bill->order->employee->name }}</td>
                                         <td>{{ $bill->created_at }}</td>
-                                        <td>Rp {{ $bill->charge }}</td>
+                                        <td>IDR {{ $bill->charge }}</td>
                                         <td><a id="detailBtn-{{$bill->id}}"><i class="material-icons">remove_red_eyes</i></a></td>
                                     </tr>
                                 @endforeach

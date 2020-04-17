@@ -31,11 +31,13 @@
   			border-radius: 10px;
   		}
   		.food-image{
-  			width: 180px;
+  			width: 150px;
   			height: 120px;
   			margin: auto;
-  			margin-top: 10px;
+                        margin-top: 10px;
+                        display: block;
   			background-color: white;
+                        border: 5px solid white;
   			border-radius: 10px;
   		}
   		.food-info{
@@ -67,7 +69,7 @@
   			text-decoration: none;
   		}
 
-  		input[type=text] {
+  		.search {
 		  width: 150px;
 		  border: 1px solid #ccc;
 		  border-radius: 4px;
@@ -78,8 +80,24 @@
 		  -webkit-transition: width 0.4s ease-in-out;
 		  transition: width 0.4s ease-in-out;
 		}
-		input[type=text]:focus {
+		.search:focus {
 		  width: 120%;
+		}
+                .foodqty{
+                        background-color: #e0a904;
+                        width: 60px;
+                        border: 0px solid #ccc;
+                        border-radius: 6px;
+                        -webkit-transition: width 0.4s ease-in-out;
+                        
+                        padding: 10px;
+                        text-align: center;
+                        display: inline-block;
+                        margin: 4px 2px;
+                        cursor: pointer;
+  		}
+                .foodqty:focus {
+                        width: 50%;
 		}
   	</style>
 </head>
@@ -101,9 +119,6 @@
                 </ul>
             </li>
           <li class="nav-item">
- <!--            <a href="{{ route('employee.waiter.mainwaiter') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                <img src="{{ asset('frontend/images/back_arrow.png') }}" style="width: 50px;height: 50px;margin-left: 950px;">
-            </a>-->
             <a href="javascript:history.back()">
                 <img src="{{ asset('frontend/images/back_arrow.png') }}" style="width: 50px;height: 50px;margin-left: 1600%;">
             </a>
@@ -122,18 +137,50 @@
             @endforeach
             <li class="menu-type-list"><a href="#">
                     <form action="#" method="#">
-                        <input type="text" name="search" placeholder="  Search . . .">
+                        <input class="search" type="text" name="search" placeholder="  Search . . .">
                     </form>
                 </a>
             </li>
         </ul>
     </div>
 
-    <div class="menu-list">
-        <div class="menu">
-            <div class="food-image"></div>
-            <p class="food-info"> Nasi <br>2000</br ></p>
-        </div>
+    <div class="menu-list" style="overflow:auto;">
+        @foreach($menus as $menu)
+            <div class="menu" >
+                <img class="food-image" src="{{ asset('uploads/menu/'.$menu->image) }}">
+                <p class="food-info"> {{ $menu->name }} <br>IDR {{ $menu->price }}</br ></p>
+                <div class="food-info"><input class="foodqty" type="text" id="menuqtyinput-{{ $menu->id }}" value="0" onChange="changeValue({{ $menu->id }})"></a></div>
+            </div>
+        @endforeach
     </div>
+    
+    <form method="POST" action="{{ route('employee.waiter.ordermenu') }}" enctype="multipart/form-data">
+        @csrf
+        <input type="hidden" name="order_id" value="{{ $order }}">
+        @foreach($menus as $menu)
+            <input type="hidden" id="menuid-{{ $menu->id }}" name="id[]" value="{{ $menu->id }}">
+            <input type="hidden" id="menuqty-{{ $menu->id }}" name="qty[]" value="0">
+            <br>
+        @endforeach
+        <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+    
+    <script>
+        var ordermenus = <?php echo json_encode($ordermenus); ?>;
+        ordermenus.forEach(function(ordermenu){
+            var menuqty = "menuqty-" + ordermenu.menu_id;
+            var menuqtyinput = "menuqtyinput-" + ordermenu.menu_id;
+            document.getElementById(menuqty).value = ordermenu.quantity;
+            document.getElementById(menuqtyinput).value = ordermenu.quantity;
+        });
+        
+        function changeValue(id) {
+            var menuqty = "menuqty-" + id;
+            var menuqtyinput = "menuqtyinput-" + id;
+            
+            document.getElementById(menuqty).value = document.getElementById(menuqtyinput).value;
+            console.log(document.getElementById(menuqty).value);
+        }
+    </script>
 </body>
 </html>
