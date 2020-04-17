@@ -44,7 +44,8 @@ class WaiterController extends Controller
     }
     public function reserve()
     {
-        return view('employee.waiter.reserve');
+        $tables = Table::all();
+        return view('employee.waiter.reserve', compact('tables'));
     }
-}
 
+}

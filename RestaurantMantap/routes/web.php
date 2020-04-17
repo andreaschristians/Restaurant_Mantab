@@ -26,6 +26,7 @@ Route::group(['prefix'=>'employee','middleware'=>'employee','namespace'=>'Employ
     Route::get('waiter/choosetable', 'WaiterController@table')->name('employee.waiter.choosetable');
     Route::get('waiter/ordermenu/{number}', 'WaiterController@order')->name('employee.waiter.ordermenu');
     Route::get('waiter/reserve', 'WaiterController@reserve')->name('employee.waiter.reserve');
+    Route::get('waiter/reserveinfo', 'WaiterController@reserveinfo')->name('employee.waiter.reserveinfo');
     
     //cashier
     Route::get('cashier/maincashier','CashierController@index')->name('employee.cashier.maincashier');
@@ -36,8 +37,6 @@ Route::group(['prefix'=>'employee','middleware'=>'employee','namespace'=>'Employ
     Route::get('cashier/paytable','CashierController@paytable')->name('employee.cashier.paytable');
     Route::get('cashier/payment','CashierController@payment')->name('employee.cashier.payment');
 });
-
-
 
 Auth::routes();
 
