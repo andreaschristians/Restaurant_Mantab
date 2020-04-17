@@ -7,6 +7,7 @@ use App\Table;
 use App\Order;
 use App\Ordermenu;
 use App\Category;
+use App\Bill;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -55,9 +56,27 @@ class CashierController extends Controller
         $orders = Order::all()->where('status', 0);
         return view('employee.cashier.paytable', compact('orders'));
     }
-    public function payment()
+    public function payment($order_id)
     {
-        return view('employee.cashier.payment');
+        $ordermenus = Ordermenu::where('order_id', $order_id)->get();
+        $bill_id = Bill::where('order_id', $order_id)->first()->id;
+        $total = 0;
+        return view('employee.cashier.payment', compact('ordermenus', 'order_id','bill_id', 'total'));
+    }
+    public function paymentstore(Request $request)
+    {
+        $payment = new Payment();
+        $payment->amount = $request->amount;
+        $payment->change = ($request->amount - $request->total);
+        $payment->bill_id = $request->bill_id;
+        $payment->save();
+        
+        $tablenumber = Order::where('id', $request->order_id)->first()->table_number;
+        
+        $table = Table::find($tablenumber);
+        $table->status = "Empty";
+        $table->save();
+        return redirect()->route('employee.cashier.maincashier'); 
     }
 }
 

@@ -64,28 +64,24 @@
   	</style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-sm bg-warning navbar-dark" style="height: 100px; width: 100%; padding-top: 5.5%" >
-        <ul class="navbar-nav" style="margin-left: 16.2%;margin-top: 0.5%">
+    <nav class="navbar navbar-expand-sm bg-warning navbar-dark" style="height: 100px; width: 100%; padding-top: 80px" >
+        <ul class="navbar-nav" style="margin-left: 245px;margin-top: 10px">
             <li class="nav-item">
-                <img src="{{ asset('frontend/images/avatar.png') }}"class="mr-3 mt-3 rounded-circle" style="width:100px; position: relative;">
+                <img src="{{ asset('frontend/images/avatar.png') }}"class="mr-3 mt-3 rounded-circle" style="width:100px;position: relative;">
             </li>
             <li class="nav-item">
-                <ul class="nav flex-column" style="margin-top: 50%">
+                <ul class="nav flex-column" style="margin-top: 33px">
                     <li class="nav-item">
-                        <p class="font-weight-regular"><font size="4">
-                          nama
-                        </p>
+                        <p class="font-weight-regular"><font size="4">{{ Auth::guard('employee')->user()->name }}</font></p>
                     </li>
                     <li class="nav-item">
-                        <p class="font-weight-regular"><font size="4">
-                          cashier
-                        </p>
+                        <p class="font-weight-regular"><font size="4">{{ Auth::guard('employee')->user()->job }}</font></p>
                     </li>
                 </ul>
             </li>
           <li class="nav-item">
-            <a href="{{ route('employee.cashier.maincashier') }}">
-                <img src="{{ asset('frontend/images/back_arrow.png') }}" style="width: 50px;height: 50px;margin-left: 1700%;">
+            <a href="javascript:history.back()">
+                <img src="{{ asset('frontend/images/back_arrow.png') }}" style="width: 50px;height: 50px;margin-left: 1600%;">
             </a>
             <form id="logout-form" method="POST" action="{{ route('signout') }}" style="display: none">
                 @csrf
@@ -95,11 +91,13 @@
     </nav>
     
     <div class="table-payment" >
-      @foreach($orders as $key=>$order)
-              <div class="table-num" onclick="selectTable({{ $order->id }})">
-                  <p>TABLE <br>{{ $order->table_number }}</p></br></p>
-              </div>
-      @endforeach
+        @foreach($orders as $key=>$order)
+            <a href="{{ route('employee.cashier.payment', $order->id) }}">
+                <div class="table-num">
+                <p>TABLE<br>{{ $order->table_number }}</p>
+                </div>
+            </a>
+        @endforeach
     </div>
 </body>
 </html>
