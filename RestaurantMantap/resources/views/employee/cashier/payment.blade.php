@@ -47,7 +47,7 @@
         font-weight: bold;
       }
       .list-table{
-        height: 350px;
+        height: 410px;
         overflow: auto;
       }
       .total{
@@ -63,7 +63,7 @@
       }
       td{
         border-bottom: 2px solid #ddd;
-        padding-top: 10px;
+        padding: 3px;
       }
       #number{
         border-right: 2px solid #ddd;
@@ -90,6 +90,11 @@
       }
       #pay{
         text-align: center;
+        margin: 0;
+        margin-top: 10px;
+      }
+      #total-pay{
+        margin: 0;
         margin-top: 10px;
       }
       #payment{
@@ -180,8 +185,8 @@
                         <td id="number">{{ $key+1 }}. </td>
                         <td id="food">{{ $ordermenu->menu->name }}</td>
                         <td id="qty">{{ $ordermenu->quantity }}</td>
-                        <td id="price">IDR {{ $ordermenu->menu->price }}</td>
-                        <td id="total">IDR {{ ($ordermenu->quantity) * ($ordermenu->menu->price) }}</td>
+                        <td id="price">IDR&nbsp&nbsp{{ $ordermenu->menu->price }}</td>
+                        <td id="total">IDR&nbsp&nbsp{{ ($ordermenu->quantity) * ($ordermenu->menu->price) }}</td>
                         <?php $total += ($ordermenu->quantity) * ($ordermenu->menu->price) ?>
                     </tr>
                 @endforeach
@@ -195,7 +200,7 @@
         <form id="payment" method="POST" action="{{ route('employee.cashier.paymentstore') }}">
             <input type="number" name="amount">
             <br>
-            <p>Total</p>
+            <p id="total-pay">Total</p>
             <input type="text" value="{{ $total }}" name="total">
             <input type="hidden" value="{{ $bill_id }}" name="bill_id">
             <input type="hidden" value="{{ $order_id }}" name="order_id">
