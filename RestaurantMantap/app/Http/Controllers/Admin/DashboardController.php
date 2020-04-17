@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Menu;
-use App\OrderMenu;
+use App\Ordermenu;
 use App\Order;
 use App\Bill;
 use App\Reservation;
