@@ -40,7 +40,7 @@
                         </div>
                         <div class="card-footer">
                             <div class="stats">
-                                <i class="material-icons">local_offer</i> <a href="{{ route('category.index') }}">Total ongoing reservations</a>
+                                <i class="material-icons">local_offer</i> <a href="{{ route('reservation.index') }}">Total ongoing reservations</a>
                             </div>
                         </div>
                     </div>
@@ -57,15 +57,19 @@
                             <table id="table" class="table"  cellspacing="0" width="100%">
                                 <thead class="text-primary">
                                 <th>ID</th>
+                                <th>Employee</th>
                                 <th>Date</th>
                                 <th>Total</th>
+                                <th style="display: none;"></th>
                                 </thead>
                                 <tbody>
                                 @foreach($bills as $key=>$bill)
                                     <tr>
                                         <td>{{ $key + 1 }}</td>
                                         <td>{{ $bill->order->employee->name }}</td>
+                                        <td>{{ $bill->created_at }}</td>
                                         <td>Rp {{ $bill->charge }}</td>
+                                        <td><a href="" class="btn btn-info btn-sm"><i class="material-icons">remove_red_eye</i></a></td>
                                     </tr>
                                 @endforeach
                                 </tbody>

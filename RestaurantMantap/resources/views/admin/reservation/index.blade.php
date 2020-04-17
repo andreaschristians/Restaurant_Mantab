@@ -27,7 +27,7 @@
                                 <th>Message</th>
                                 <th>Status</th>
                                 <th>Created At</th>
-                                <th>Action</th>
+                                <th style="display: none;"></th>
                                 </thead>
                                 <tbody>
                                     @foreach($reservations as $key=>$reservation)

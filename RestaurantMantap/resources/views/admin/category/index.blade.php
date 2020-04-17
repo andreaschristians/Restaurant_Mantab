@@ -25,6 +25,7 @@
                                 <th>Slug</th>
                                 <th>Created At</th>
                                 <th>Updated At</th>
+                                <th style="display: none;"></th>
                                 </thead>
                                 <tbody>
                                     @foreach($categories as $key=>$category)
