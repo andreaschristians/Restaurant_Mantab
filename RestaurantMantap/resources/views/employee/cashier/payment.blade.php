@@ -170,7 +170,7 @@
 
         <div class="list-table">
           <table id="table-list">
-
+            
             <?php
               for ($i = 1; $i <= 10; $i++) {
                 echo '
