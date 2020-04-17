@@ -149,8 +149,8 @@
 
       <div id="box">
   			 @foreach($tables as $key=>$table)
-           <a id="a-{{ $table->number }}" href ="#"><div id="table-{{ $table->number }}" onclick="selectTable({ $key })"> {{ $table->number }} </div></a>
-         @endforeach
+             <a id="a-{{ $table->number }}" href ="#"><div id="table-{{ $table->number }}" onclick="selectTable({ $key })"> {{ $table->number }} </div></a>
+             @endforeach
       </div>
 
       <form id="side-form" method="post" action="#">
@@ -160,7 +160,7 @@
           <p id="form-input-title">Input Date</p>
           <input type="datetime-local" id="form-input-info" name="dateandtime">
           <input type="submit" id="submit-info" name="submit" value="Reserve">
-    <div class="table-list" >
+        <div class="table-list" >
         <div id="box">
             @foreach($tables as $key=>$table)
                 <a id="a-{{ $table->number }}"><div id="table-{{ $table->number }}" onclick="selectTable({{ $table->number }})" style="opacity: 0.5"> {{ $table->number }} </div></a>
