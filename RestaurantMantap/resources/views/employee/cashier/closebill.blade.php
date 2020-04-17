@@ -173,7 +173,7 @@
             <div class="total-bill">
                 <p id="total-num">IDR  <?php echo $total ?><p>
             </div>
-              <a href="{{ route('employee.cashier.billstore', $order_id) }}" class="total">
+              <a href="{{ route('employee.cashier.billstore', [$order_id, $total]) }}" class="total">
                   <button>Close Bill</button>
               </a>
         </div>
