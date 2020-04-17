@@ -97,17 +97,15 @@
     <div class="table-payment" >
           <?php
             for ($i = 1; $i <= 10; $i++) {
-<<<<<<< HEAD
-=======
-                echo '
-                   <a href="{{ route('.'employee.cashier.payment'.') }}">
->>>>>>> 2652ae2717b876a794a91d54655f05f92e1bf6b4
+                ?>
+                   <a href={{route('employee.cashier.payment')}}>
                       <div class="table-num">
                         <p>TABLE <br>1</p></br></p>
                       </div>
                     </a>
                 
-                ';
+                <?php
+              }
             ?>
     </div>
 </body>
