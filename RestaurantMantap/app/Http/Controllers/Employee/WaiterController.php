@@ -7,6 +7,7 @@ use App\Table;
 use App\Order;
 use App\Ordermenu;
 use App\Category;
+use App\Reservation;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -58,6 +59,7 @@ class WaiterController extends Controller
         } else if ($tableStatus == "Reserved") {
             $order = new Order();
             $table = Table::find($tableNumber);
+            $reservation = Reservation::where('table_number', $tableNumber)->where('status', 1)->first();
             
             $order->status = 1;
             $order->employee_id = $employeeId;
@@ -65,19 +67,16 @@ class WaiterController extends Controller
             $order->save();
             
             $table->status = "Occupied";
-            $table->save;
+            $table->save();
+            
+            $reservation->status = 0;
+            $reservation->save();
         }
         
         $order = Order::where('status', 1)->where('table_number', $tableNumber)->first()->id;
         $ordermenus = Ordermenu::where('order_id', $order)->get();
         return view('employee.waiter.ordermenu' ,compact('categories', 'menus', 'order', 'ordermenus'));
     }
-    public function reserve()
-    {
-        $tables = Table::all();
-        return view('employee.waiter.reserve', compact('tables'));
-    }
-    
     public function ordermenu(Request $request) 
     {
         $menus = Menu::all();
@@ -105,6 +104,34 @@ class WaiterController extends Controller
         }
         return redirect()->route('employee.waiter.mainwaiter');    
     }
+    
+    public function reserve()
+    {
+        $tables = Table::all();
+        return view('employee.waiter.reserve' ,compact('tables'));
+    }
+    public function reservestore(Request $request)
+    {
+        $this->validate($request,[
+            'name' => 'required',
+            'date_and_time' => 'required',
+            'table_number' => 'required',
+        ]);
+        $reservation = new Reservation();
+        $reservation->name = $request->name;
+        $reservation->date_and_time = $request->date_and_time;
+        $reservation->table_number = $request->table_number;
+        $reservation->status = 1;
+        $reservation->save();
+        
+
+        $table = Table::find($request->table_number);
+        $table->status = "Reserved";
+        $table->save();
+        
+        return redirect()->route('employee.waiter.mainwaiter');
+        echo $request->table_number;
+    }
+    
 }
 
-        

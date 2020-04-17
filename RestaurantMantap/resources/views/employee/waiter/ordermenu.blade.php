@@ -99,6 +99,15 @@
     .foodqty:focus {
       width: 50%;
 		}
+                
+                #saveOrderBtn {
+                    background-color: #ffc107;
+                    margin-left: 85%;
+                    margin-top: 10px;
+                    border-radius: 10px;
+                    border: none;
+                    color: black;
+                }
   	</style>
 </head>
 <body>
@@ -160,9 +169,8 @@
         @foreach($menus as $menu)
             <input type="hidden" id="menuid-{{ $menu->id }}" name="id[]" value="{{ $menu->id }}">
             <input type="hidden" id="menuqty-{{ $menu->id }}" name="qty[]" value="0">
-            <br>
         @endforeach
-        <button type="submit" class="btn btn-primary">Save</button>
+        <button type="submit" id="saveOrderBtn" class="btn btn-primary">Save</button>
     </form>
     
     <script>
