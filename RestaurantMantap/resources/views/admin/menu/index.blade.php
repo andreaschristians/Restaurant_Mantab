@@ -28,7 +28,7 @@
                                 <th>Price</th>
                                 <th>Created At</th>
                                 <th>Updated At</th>
-                                <th>Action</th>
+                                <th style="display: none;"></th>
                                 </thead>
                                 <tbody>
                                     @foreach($menus as $key=>$menu)
