@@ -95,18 +95,13 @@
     </nav>
     
     <div class="table-payment" >
-          <?php
-            for ($i = 1; $i <= 10; $i++) {
-                ?>
-                   <a href={{route('employee.cashier.payment')}}>
-                      <div class="table-num">
-                        <p>TABLE <br>1</p></br></p>
-                      </div>
-                    </a>
-                
-                <?php
-              }
-            ?>
+          @foreach($tables as $key=>$table)
+              <a href={{route('employee.cashier.payment')}}>
+                <div class="table-num">
+                    <p>TABLE <br>{{ $table->number }}</p></br></p>
+                </div>
+             </a>
+          @endforeach
     </div>
 </body>
 </html>
