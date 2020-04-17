@@ -94,7 +94,7 @@
     
     <div id="box">
         @foreach($tables as $key=>$table)
-        <a id="a-{{ $table->number }}" href ="{{ route('employee.waiter.ordermenu',$table->number) }}"><div id="table-{{ $table->number }}" onclick="selectTable({ $key })"> {{ $table->number }} </div></a>
+        <a id="a-{{ $table->number }}" href ="{{ route('employee.waiter.order', [$table->number, $table->status, Auth::guard('employee')->user()->id]) }}"><div id="table-{{ $table->number }}" onclick="selectTable({ $key })"> {{ $table->number }} </div></a>
         @endforeach
     </div>
 </body>
@@ -113,14 +113,12 @@
         var id = "table-" + table.number;
         var id_a = "a-" + table.number
         //table color
-        if (table.status == "empty") {
+        if (table.status == "Empty") {
             document.getElementById(id).style.background = "#2d9e2f";
-        } else if (table.status == "reserved") {
+        } else if (table.status == "Reserved") {
             document.getElementById(id).style.background = "#8d8d8d";
-            document.getElementById(id_a).removeAttribute("href");
         } else {
             document.getElementById(id).style.background = "#a60b00";
-            document.getElementById(id_a).removeAttribute("href");
         }
 
         position(id, table.position_x, table.position_y);
@@ -135,7 +133,7 @@
     var tables = <?php echo json_encode($tables); ?>;
     //Click table
     function selectTable(arrnumber) {
-        if (tables[arrnumber].status == "empty") {
+        if (tables[arrnumber].status == "Empty") {
             
         } else {
             
