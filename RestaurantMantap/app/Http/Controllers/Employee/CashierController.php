@@ -38,8 +38,9 @@ class CashierController extends Controller
     {
         $order_id = Order::where('table_number', $table_number)->where('status', 1)->first()->id;
         $ordermenus = Ordermenu::where('order_id', $order_id)->get();
-        
-        return view('employee.cashier.closebill', compact('ordermenus', 'order_id'));
+        $total = 0;
+        return view('employee.cashier.closebill', compact('ordermenus', 'order_id', 'total'));
+
     }
     public function billstore($order_id) {
         $order = Order::find($order_id);
