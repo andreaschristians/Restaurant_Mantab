@@ -4,7 +4,6 @@
 	<title>Reserve</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-  <link rel="stylesheet" href="{{ asset('frontend/css/jquery.datetimepicker.css') }}">
 
   	<style>
   		.table-list{
@@ -57,6 +56,10 @@
         padding-top: 20px;
         padding-left: 10px;
       }
+      #side-form{
+        vertical-align: top;
+        display: inline-block;
+      }
   		.aval, .used, .rsvd{
   			width: 20px;
   			height: 20px;
@@ -77,6 +80,7 @@
         border-radius: 3px;
         margin-bottom: 5px;
         padding: 2px;
+        color: black
         background-color: #e6e6e6;
       }
       #form-input-title{
@@ -84,13 +88,15 @@
         margin: 0;
         margin-bottom: 5px;
       }
-      *:focus{
-        outline: none;
+      #submit-info{
+        width: 100px;
+        margin-top: 210px;
+        border-radius: 5px;
+        border: 1px solid #636363;
       }
-  		a:hover{
-  			text-decoration: none;
-  			color: red;
-  		}
+      input{
+        width: 250px;
+      }
       ::-webkit-scrollbar {
         width: 10px;
       }
@@ -103,6 +109,11 @@
       ::-webkit-scrollbar-thumb:hover {
         background: #555; 
       }
+      ::placeholder {
+        color: black;
+      }
+
+
   	</style>
 </head>
 <body>
@@ -127,7 +138,7 @@
 		   <li class="nav-item">
 			   	<a href="/employee/waiter/mainwaiter">
 			      	<img src="{{ asset('frontend/images/back_arrow.png') }}"
-			      	style="width: 50px;height: 50px;margin-left: 1700%;">
+			      	style="width: 50px;height: 50px;margin-left: 1600%;">
 			    </a>
 		   </li>
 		 </ul>
@@ -143,18 +154,23 @@
 		</div>
 
   	<div class="table-list" >
+
       <div id="box">
   			 @foreach($tables as $key=>$table)
-           <a id="a-{{ $table->number }}" href ="{{ route('employee.waiter.ordermenu',$table->number) }}"><div id="table-{{ $table->number }}" onclick="selectTable({ $key })"> {{ $table->number }} </div></a>
+           <a id="a-{{ $table->number }}" href ="#"><div id="table-{{ $table->number }}" onclick="selectTable({ $key })"> {{ $table->number }} </div></a>
          @endforeach
       </div>
-      <div id="form-info">
-        <p id="form-input-title">Input Name</p>
-        <input type="text" id="form-input-info" name="name"placeholder=" Your name">
-        <p id="form-input-title">Input Date</p>
-        <input type="datetime-local" id="form-input-info" name="dateandtime" placeholder="Choose Date and Time">
-      </div>
-    </div>
+
+      <form id="side-form" method="post" action="{{url()}}">
+        <div id="form-info">
+          <p id="form-input-title">Input Name</p>
+          <input type="text" id="form-input-info" name="name" placeholder="Name">
+          <p id="form-input-title">Input Date</p>
+          <input type="datetime-local" id="form-input-info" name="dateandtime">
+          <input type="submit" id="submit-info" name="submit" value="Reserve">
+        </div>
+       </div>
+      </form>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -194,14 +210,7 @@
             document.getElementById(elmnt).style.top = (pos_x+"px"); //y axis
             document.getElementById(elmnt).style.left = (pos_y+"px"); //x axis
         }
-        
-        function selectTable(arrnumber) {
-            if (tables[arrnumber].status == "empty") {
-                
-            } else {
-                console.log("test2");
-            }
-        } 
+          
 
     </script>
 

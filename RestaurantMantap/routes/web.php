@@ -26,7 +26,6 @@ Route::group(['prefix'=>'employee','middleware'=>'employee','namespace'=>'Employ
     Route::get('waiter/choosetable', 'WaiterController@table')->name('employee.waiter.choosetable');
     Route::get('waiter/ordermenu/{number}', 'WaiterController@order')->name('employee.waiter.ordermenu');
     Route::get('waiter/reserve', 'WaiterController@reserve')->name('employee.waiter.reserve');
-    Route::get('waiter/reserveinfo', 'WaiterController@reserveinfo')->name('employee.waiter.reserveinfo');
     
     //cashier
     Route::get('cashier/maincashier','CashierController@index')->name('employee.cashier.maincashier');
@@ -50,6 +49,7 @@ Route::group(['prefix'=>'admin','middleware'=>'auth','namespace'=>'Admin'], func
     Route::resource('order','OrderController');
     
     Route::get('reservation','ReservationController@index')->name('reservation.index');
+    
     Route::post('reservation/{id}','ReservationController@status')->name('reservation.status');
-    Route::delete('reservation/{id}','ReservationController@destory')->name('reservation.destory');
+    Route::delete('reservation/{id}','ReservationController@destroy')->name('reservation.destroy');
 });

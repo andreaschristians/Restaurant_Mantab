@@ -138,7 +138,7 @@
         if (tables[arrnumber].status == "empty") {
             
         } else {
-            console.log("test2");
+            
         }
     }
 </script>

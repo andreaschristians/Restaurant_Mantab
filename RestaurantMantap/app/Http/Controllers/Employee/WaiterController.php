@@ -48,4 +48,6 @@ class WaiterController extends Controller
         return view('employee.waiter.reserve', compact('tables'));
     }
 
+        
+
 }
