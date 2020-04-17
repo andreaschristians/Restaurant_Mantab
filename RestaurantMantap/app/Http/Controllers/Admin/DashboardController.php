@@ -33,6 +33,6 @@ class DashboardController extends Controller
         $itemCount = Order::count();
         $reservations = Reservation::where('status',false)->get();
         $orders = Order::all();
-        return view('admin.dashboard',compact('menus','favoritemenu','favoritecount', 'categoryCount', 'itemCount', 'reservations', 'orders'));
+        return view('admin.dashboard',compact('menu','favoritemenu','favoritecount', 'categoryCount', 'itemCount', 'reservations', 'orders'));
     }
 }
