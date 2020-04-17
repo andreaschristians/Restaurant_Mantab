@@ -8,6 +8,7 @@ use App\Order;
 use App\Ordermenu;
 use App\Category;
 use App\Bill;
+use App\Payment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -43,10 +44,15 @@ class CashierController extends Controller
         return view('employee.cashier.closebill', compact('ordermenus', 'order_id', 'total'));
 
     }
-    public function billstore($order_id) {
+    public function billstore($order_id, $total) {
         $order = Order::find($order_id);
         $order->status = 0;
         $order->save();
+        
+        $bill = new Bill();
+        $bill->charge = $total;
+        $bill->order_id = $order_id;
+        $bill->save();
         
         return redirect()->route('employee.cashier.maincashier'); 
     }

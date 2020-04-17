@@ -193,6 +193,7 @@
       <div class="input-cash">
         <p id="pay">Input Cash</p>
         <form id="payment" method="POST" action="{{ route('employee.cashier.paymentstore') }}">
+             @csrf
             <input type="number" name="amount">
             <br>
             <p>Total</p>
