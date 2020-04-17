@@ -67,28 +67,24 @@
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-sm bg-warning navbar-dark" style="height: 100px; width: 100%; padding-top: 5.5%" >
-        <ul class="navbar-nav" style="margin-left: 16.2%;margin-top: 0.5%">
+    <nav class="navbar navbar-expand-sm bg-warning navbar-dark" style="height: 100px; width: 100%; padding-top: 80px" >
+        <ul class="navbar-nav" style="margin-left: 245px;margin-top: 10px">
             <li class="nav-item">
                 <img src="{{ asset('frontend/images/avatar.png') }}"class="mr-3 mt-3 rounded-circle" style="width:100px;position: relative;">
             </li>
             <li class="nav-item">
-                <ul class="nav flex-column" style="margin-top: 50%">
+                <ul class="nav flex-column" style="margin-top: 33px">
                     <li class="nav-item">
-                        <p class="font-weight-regular"><font size="4">
-                          {{ Auth::guard('employee')->user()->name }}
-                        </p>
+                        <p class="font-weight-regular"><font size="4">{{ Auth::guard('employee')->user()->name }}</font></p>
                     </li>
                     <li class="nav-item">
-                        <p class="font-weight-regular"><font size="4">
-                          {{ Auth::guard('employee')->user()->job }}
-                        </p>
+                        <p class="font-weight-regular"><font size="4">{{ Auth::guard('employee')->user()->job }}</font></p>
                     </li>
                 </ul>
             </li>
           <li class="nav-item">
-            <a href="{{ route('employee.cashier.maincashier') }}">
-                <img src="{{ asset('frontend/images/back_arrow.png') }}" style="width: 50px;height: 50px;margin-left: 1700%;">
+            <a href="javascript:history.back()">
+                <img src="{{ asset('frontend/images/back_arrow.png') }}" style="width: 50px;height: 50px;margin-left: 1600%;">
             </a>
             <form id="logout-form" method="POST" action="{{ route('signout') }}" style="display: none">
                 @csrf
@@ -98,18 +94,14 @@
     </nav>
     
     <div class="bill-table" >
-      <p class="sel-table">Select Table</p>
-      <div class="bill-table-show">
-          <div id="box">
-            @foreach($orders as $key=>$order)
-               @foreach($tables as $key=>$table)
-                  <a id="a-{{ $table->number }}" href ="{{ route('employee.cashier.closebill', [$table->number])}}">
-                    <div id="table-{{ $table->number }}" onclick="selectTable({ $key })"> {{ $table->number }} </div>
-                  </a>
-               @endforeach
-            @endforeach
-          </div>
-      </div>
+        <p class="sel-table">Select Table</p>
+        <div class="bill-table-show">
+            <div id="box">
+                @foreach($tables as $key=>$table)
+                    <a id="a-{{ $table->number }}" href ="{{ route('employee.cashier.closebill', $table->number) }}"><div id="table-{{ $table->number }}" onclick="selectTable({ $key })"> {{ $table->number }} </div></a>
+                @endforeach
+            </div>
+        </div>
     </div>
 
 
@@ -123,8 +115,12 @@
         //table color
         if (table.status == "Empty") {
             document.getElementById(id).style.background = "#2d9e2f";
+            document.getElementById(id_a).removeAttribute("href");
+            document.getElementById(id_a).style.opacity=0.5;
         } else if (table.status == "Reserved") {
             document.getElementById(id).style.background = "#8d8d8d";
+            document.getElementById(id_a).removeAttribute("href");
+            document.getElementById(id_a).style.opacity=0.5;
         } else {
             document.getElementById(id).style.background = "#a60b00";
         }
@@ -137,15 +133,6 @@
         document.getElementById(elmnt).style.top = (pos_x+"px"); //y axis
         document.getElementById(elmnt).style.left = (pos_y+"px"); //x axis
     }
-    
-    // Click table
-    // function selectTable(arrnumber) {
-    //     if (tables[arrnumber].status == "Empty") {
-            
-    //     } else {
-            
-    //     }
-    // }
 
   </script>
 </body>

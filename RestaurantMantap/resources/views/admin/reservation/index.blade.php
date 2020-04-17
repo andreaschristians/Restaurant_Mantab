@@ -34,7 +34,11 @@
                                             <td>{{ $reservation->name }}</td>
                                             <td>{{ $reservation->date_and_time }}</td>
                                             <td>{{ $reservation->table_number }}</td>
-                                            <td>{{ $reservation->status }}</td>
+                                            @if($reservation->status == false)
+                                            <td>Done</td>
+                                            @elseif($reservation->status == true)
+                                            <td>Ongoing</td>
+                                            @endif
                                             <td>{{ $reservation->created_at }}</td>
                                         </tr>
                                     @endforeach

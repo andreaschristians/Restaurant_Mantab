@@ -48,7 +48,7 @@ class ReservationController extends Controller
         Toastr::success('Reservation successfully confirmed.','Success',["positionClass" => "toast-top-right"]);
         return redirect()->back();
     }
-    4 
+    
     public function destroy($id){
         Reservation::find($id)->delete();
         Toastr::success('Reservation successfully deleted.','Success',["positionClass" => "toast-top-right"]);

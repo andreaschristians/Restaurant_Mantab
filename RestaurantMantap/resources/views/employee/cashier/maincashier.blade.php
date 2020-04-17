@@ -39,27 +39,23 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-sm bg-warning navbar-dark" style="height: 100px; width: 100%; padding-top: 5.5%" >
-        <ul class="navbar-nav" style="margin-left: 16.2%;margin-top: 0.5%">
+        <ul class="navbar-nav" style="margin-left: 245px;margin-top: 10px">
             <li class="nav-item">
                 <img src="{{ asset('frontend/images/avatar.png') }}"class="mr-3 mt-3 rounded-circle" style="width:100px;position: relative;">
             </li>
             <li class="nav-item">
-                <ul class="nav flex-column" style="margin-top: 50%">
+                <ul class="nav flex-column" style="margin-top: 33px">
                     <li class="nav-item">
-                        <p class="font-weight-regular"><font size="4">
-                          nama
-                        </p>
+                        <p class="font-weight-regular"><font size="4">{{ Auth::guard('employee')->user()->name }}</font></p>
                     </li>
                     <li class="nav-item">
-                        <p class="font-weight-regular"><font size="4">
-                          cashier
-                        </p>
+                        <p class="font-weight-regular"><font size="4">{{ Auth::guard('employee')->user()->job }}</font></p>
                     </li>
                 </ul>
             </li>
           <li class="nav-item">
             <a href="{{ route('signout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                <img src="{{ asset('frontend/images/sign_out.png') }}" style="width: 35px;height: 35px;margin-left: 2500%; margin-top: 10px;">
+                <img src="{{ asset('frontend/images/sign_out.png') }}" style="width: 35px;height: 35px;margin-left: 2300%; margin-top: 10px;">
             </a>
             <form id="logout-form" method="POST" action="{{ route('signout') }}" style="display: none">
                 @csrf

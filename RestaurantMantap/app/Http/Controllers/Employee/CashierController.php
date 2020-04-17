@@ -32,13 +32,23 @@ class CashierController extends Controller
     public function billing()
     {
         $tables = Table::all();
-        $orders = Order::where('status', 1);
-        return view('employee.cashier.billing', compact('tables', 'orders'));
+        return view('employee.cashier.billing', compact('tables'));
     }
-    public function closebill()
+    public function closebill($table_number)
     {
-        return view('employee.cashier.closebill');
+        $order_id = Order::where('table_number', $table_number)->where('status', 1)->first()->id;
+        $ordermenus = Ordermenu::where('order_id', $order_id)->get();
+        
+        return view('employee.cashier.closebill', compact('ordermenus', 'order_id'));
     }
+    public function billstore($order_id) {
+        $order = Order::find($order_id);
+        $order->status = 0;
+        $order->save();
+        
+        return redirect()->route('employee.cashier.maincashier'); 
+    }
+    
     //payment
     public function paytable()
     {

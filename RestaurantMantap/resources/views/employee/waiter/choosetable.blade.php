@@ -79,9 +79,6 @@
                 </ul>
             </li>
           <li class="nav-item">
-<!--            <a href="{{ route('employee.waiter.mainwaiter') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                <img src="{{ asset('frontend/images/back_arrow.png') }}" style="width: 50px;height: 50px;margin-left: 950px;">
-            </a>-->
             <a href="javascript:history.back()">
                 <img src="{{ asset('frontend/images/back_arrow.png') }}" style="width: 50px;height: 50px;margin-left: 1600%;">
             </a>
@@ -94,7 +91,7 @@
     
     <div id="box">
         @foreach($tables as $key=>$table)
-            <a id="a-{{ $table->number }}" href ="{{ route('employee.waiter.order', [$table->number, $table->status, Auth::guard('employee')->user()->id]) }}"><div id="table-{{ $table->number }}" onclick="selectTable({ $key })"> {{ $table->number }} </div></a>
+            <a id="a-{{ $table->number }}" href ="{{ route('employee.waiter.order', [$table->number, $table->status, Auth::guard('employee')->user()->id]) }}"><div id="table-{{ $table->number }}"> {{ $table->number }} </div></a>
         @endforeach
     </div>
 </body>
@@ -128,15 +125,5 @@
     function position(elmnt, pos_x, pos_y){
         document.getElementById(elmnt).style.top = (pos_x+"px"); //y axis
         document.getElementById(elmnt).style.left = (pos_y+"px"); //x axis
-    }
-    
-    var tables = <?php echo json_encode($tables); ?>;
-    //Click table
-    function selectTable(arrnumber) {
-        if (tables[arrnumber].status == "Empty") {
-            
-        } else {
-            
-        }
-    }
+    }document.getElementById(id_a).removeAttribute("href");
 </script>
