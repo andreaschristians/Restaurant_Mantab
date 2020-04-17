@@ -10,35 +10,37 @@
     <div class="content">
         <div class="container-fluid">
             <div class="row">
+                @foreach($favoritemenu as $key)
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="card card-stats">
                         <div class="card-header" data-background-color="orange">
-                        <img class="img-responsive img-thumbnail" src="{{ asset('uploads/menu/'.$favoritemenu[0]->image) }}" style="height: 100px; width: 100px" alt="">
+                            <img class="img-responsive img-thumbnail" src="{{ asset('uploads/menu/'.$key->image) }}" style="height: 100px; width: 100px" alt="">
                         </div>
                         <div class="card-content">
                             <p class="category">Favorite Menu</p>
-                            <h3 class="title">{{ $favoritemenu[0]->name }}</h3>
+                            <h3 class="title">{{ $key->name }}</h3>
                         </div>
                         <div class="card-footer">
                             <div class="stats">
-                                <i class="material-icons text-danger">info</i>
+                                <i class="material-icons text-danger">info_outline</i>
                                 <a href="#pablo">Total order this month : {{ $favoritecount }}</a>
                             </div>
                         </div>
                     </div>
                 </div>
+                @endforeach
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="card card-stats">
                         <div class="card-header" data-background-color="red">
-                            <i class="material-icons">info_outline</i>
+                            <i class="material-icons">chrome_reader_mode</i>
                         </div>
                         <div class="card-content">
                             <p class="category">Reservation</p>
-                            <h3 class="title">{{ $orders->count() }}</h3>
+                            <h3 class="title">{{ $reservations->count() }}</h3>
                         </div>
                         <div class="card-footer">
                             <div class="stats">
-                                <i class="material-icons">local_offer</i> Not Confirmed Reservation
+                                <i class="material-icons">local_offer</i> <a href="{{ route('category.index') }}">Total ongoing reservations</a>
                             </div>
                         </div>
                     </div>
@@ -59,11 +61,11 @@
                                 <th>Total</th>
                                 </thead>
                                 <tbody>
-                                @foreach($orders as $key=>$order)
+                                @foreach($bills as $key=>$bill)
                                     <tr>
                                         <td>{{ $key + 1 }}</td>
-                                        <td>{{ $order->name }}</td>
-                                        <td>{{ $order->phone }}</td>
+                                        <td>{{ $bill->order->employee->name }}</td>
+                                        <td>Rp {{ $bill->charge }}</td>
                                     </tr>
                                 @endforeach
                                 </tbody>
