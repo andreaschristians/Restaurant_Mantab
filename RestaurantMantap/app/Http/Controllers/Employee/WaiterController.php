@@ -106,5 +106,3 @@ class WaiterController extends Controller
         return redirect()->route('employee.waiter.mainwaiter');    
     }
 }
-
-}
