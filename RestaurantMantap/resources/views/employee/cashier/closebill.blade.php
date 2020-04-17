@@ -125,12 +125,12 @@
                 <ul class="nav flex-column" style="margin-top: 50%">
                     <li class="nav-item">
                         <p class="font-weight-regular"><font size="4">
-                          nama
+                          {{ Auth::guard('employee')->user()->name }}
                         </p>
                     </li>
                     <li class="nav-item">
                         <p class="font-weight-regular"><font size="4">
-                          cashier
+                          {{ Auth::guard('employee')->user()->job }}
                         </p>
                     </li>
                 </ul>

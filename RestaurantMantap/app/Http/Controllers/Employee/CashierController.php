@@ -2,6 +2,11 @@
 
 namespace App\Http\Controllers\Employee;
 
+use App\Menu;
+use App\Table;
+use App\Order;
+use App\Ordermenu;
+use App\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -26,7 +31,9 @@ class CashierController extends Controller
     //billing
     public function billing()
     {
-        return view('employee.cashier.billing');
+        $tables = Table::all();
+        $orders = Order::where('status', 1);
+        return view('employee.cashier.billing', compact('tables', 'orders'));
     }
     public function closebill()
     {

@@ -29,15 +29,6 @@
         border-radius: 10px;
         margin: auto;
       }
-      .table{
-        width: 7%;
-        height: 70px;
-        background-color: red;
-        margin-top: 1.5%;
-        margin-left: 5%;
-        margin-bottom: 3%;
-        display: inline-block;
-      }
       .sel-table{
         margin: 0;
         margin-left: 10%;
@@ -48,6 +39,30 @@
       a:hover{
         text-decoration: none;
         color: red;
+      }
+      #box {
+          position: relative;
+          margin: auto;
+          width: 80%;
+          height: 400px;
+/*          border: 2px solid #ffc107;*/
+        }
+
+      #box div[id*="table"] {
+          position : absolute;
+          width : 130px;
+          height : 80px;
+          z-index: 9;
+          background-color: #f1f1f1;
+          vertical-align: middle;
+          text-align: center;
+          line-height: 53px;  
+          font-size: 30;
+          border: 1px solid #d3d3d3;
+          padding: 10px;
+          z-index: 10;
+          color: #fff;
+          border-radius: 10px;
       }
     </style>
 </head>
@@ -61,12 +76,12 @@
                 <ul class="nav flex-column" style="margin-top: 50%">
                     <li class="nav-item">
                         <p class="font-weight-regular"><font size="4">
-                          nama
+                          {{ Auth::guard('employee')->user()->name }}
                         </p>
                     </li>
                     <li class="nav-item">
                         <p class="font-weight-regular"><font size="4">
-                          cashier
+                          {{ Auth::guard('employee')->user()->job }}
                         </p>
                     </li>
                 </ul>
@@ -85,11 +100,53 @@
     <div class="bill-table" >
       <p class="sel-table">Select Table</p>
       <div class="bill-table-show">
-          <a href="{{ route('employee.cashier.closebill') }}">
-            <div class="table">
-            </div>
-          </a>
+          <div id="box">
+            @foreach($orders as $key=>$order)
+               @foreach($tables as $key=>$table)
+                  <a id="a-{{ $table->number }}" href ="{{ route('employee.cashier.closebill', [$table->number])}}">
+                    <div id="table-{{ $table->number }}" onclick="selectTable({ $key })"> {{ $table->number }} </div>
+                  </a>
+               @endforeach
+            @endforeach
+          </div>
       </div>
     </div>
+
+
+ <script>
+
+    var tables = <?php echo json_encode($tables); ?>;
+    
+    tables.forEach(function(table){
+        var id = "table-" + table.number;
+        var id_a = "a-" + table.number
+        //table color
+        if (table.status == "Empty") {
+            document.getElementById(id).style.background = "#2d9e2f";
+        } else if (table.status == "Reserved") {
+            document.getElementById(id).style.background = "#8d8d8d";
+        } else {
+            document.getElementById(id).style.background = "#a60b00";
+        }
+
+        position(id, table.position_x, table.position_y);
+    });
+
+    //Table Position
+    function position(elmnt, pos_x, pos_y){
+        document.getElementById(elmnt).style.top = (pos_x+"px"); //y axis
+        document.getElementById(elmnt).style.left = (pos_y+"px"); //x axis
+    }
+    
+    // Click table
+    // function selectTable(arrnumber) {
+    //     if (tables[arrnumber].status == "Empty") {
+            
+    //     } else {
+            
+    //     }
+    // }
+
+  </script>
 </body>
 </html>

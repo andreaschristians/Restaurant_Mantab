@@ -33,7 +33,7 @@ Route::group(['prefix'=>'employee','middleware'=>'employee','namespace'=>'Employ
     Route::get('cashier/maincashier','CashierController@index')->name('employee.cashier.maincashier');
     //cashier billing
     Route::get('cashier/billing','CashierController@billing')->name('employee.cashier.billing');
-    Route::get('cashier/closebill','CashierController@closebill')->name('employee.cashier.closebill');
+    Route::get('cashier/closebill/{number}','CashierController@closebill')->name('employee.cashier.closebill');
     //cashier payment
     Route::get('cashier/paytable','CashierController@paytable')->name('employee.cashier.paytable');
     Route::get('cashier/payment','CashierController@payment')->name('employee.cashier.payment');

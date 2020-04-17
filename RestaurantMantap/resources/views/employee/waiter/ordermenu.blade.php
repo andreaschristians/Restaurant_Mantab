@@ -34,10 +34,10 @@
   			width: 150px;
   			height: 120px;
   			margin: auto;
-                        margin-top: 10px;
-                        display: block;
+        margin-top: 10px;
+        display: block;
   			background-color: white;
-                        border: 5px solid white;
+        border: 5px solid white;
   			border-radius: 10px;
   		}
   		.food-info{
@@ -83,21 +83,21 @@
 		.search:focus {
 		  width: 120%;
 		}
-                .foodqty{
-                        background-color: #e0a904;
-                        width: 60px;
-                        border: 0px solid #ccc;
-                        border-radius: 6px;
-                        -webkit-transition: width 0.4s ease-in-out;
+    .foodqty{
+    background-color: #e0a904;
+    width: 60px;
+    border: 0px solid #ccc;
+    border-radius: 6px;
+    -webkit-transition: width 0.4s ease-in-out;
                         
-                        padding: 10px;
-                        text-align: center;
-                        display: inline-block;
-                        margin: 4px 2px;
-                        cursor: pointer;
-  		}
-                .foodqty:focus {
-                        width: 50%;
+    padding: 10px;
+    text-align: center;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;
+  	}
+    .foodqty:focus {
+      width: 50%;
 		}
   	</style>
 </head>

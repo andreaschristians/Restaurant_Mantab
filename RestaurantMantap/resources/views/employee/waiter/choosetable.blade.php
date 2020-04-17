@@ -94,7 +94,7 @@
     
     <div id="box">
         @foreach($tables as $key=>$table)
-        <a id="a-{{ $table->number }}" href ="{{ route('employee.waiter.order', [$table->number, $table->status, Auth::guard('employee')->user()->id]) }}"><div id="table-{{ $table->number }}" onclick="selectTable({ $key })"> {{ $table->number }} </div></a>
+            <a id="a-{{ $table->number }}" href ="{{ route('employee.waiter.order', [$table->number, $table->status, Auth::guard('employee')->user()->id]) }}"><div id="table-{{ $table->number }}" onclick="selectTable({ $key })"> {{ $table->number }} </div></a>
         @endforeach
     </div>
 </body>

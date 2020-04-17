@@ -161,7 +161,7 @@
          @endforeach
       </div>
 
-      <form id="side-form" method="post" action="{{url()}}">
+      <form id="side-form" method="post" action="#">
         <div id="form-info">
           <p id="form-input-title">Input Name</p>
           <input type="text" id="form-input-info" name="name" placeholder="Name">

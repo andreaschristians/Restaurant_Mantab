@@ -108,5 +108,3 @@ class WaiterController extends Controller
 }
 
         
-
-}
