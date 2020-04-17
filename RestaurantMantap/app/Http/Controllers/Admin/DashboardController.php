@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\OrderMenu;
 use App\Menu;
+use App\OrderMenu;
+use App\Order;
+use App\Bill;
+
 use App\Category;
 use App\Reservation;
-use App\Order;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -16,6 +18,7 @@ class DashboardController extends Controller
     {
         $menus = Menu::all();
         
+        //get favorite menu
         $favoritemenuid = 0;
         $favoritecount = 0;
         foreach ($menus as $menu) {
@@ -25,14 +28,14 @@ class DashboardController extends Controller
                 $favoritecount = $count;
             }
         }
-        echo $favoritecount;
-        echo $favoritemenuid;
-        
         $favoritemenu = Menu::where('id', $favoritemenuid)->get();
+        
+        $orders = Order::all();
+        $bills = Bill::all();
+        
         $categoryCount = Category::count();
         $itemCount = Order::count();
         $reservations = Reservation::where('status',false)->get();
-        $orders = Order::all();
-        return view('admin.dashboard',compact('menu','favoritemenu','favoritecount', 'categoryCount', 'itemCount', 'reservations', 'orders'));
+        return view('admin.dashboard',compact('menu','favoritemenu','favoritecount', 'bills', 'orders', 'categoryCount', 'itemCount', 'reservations' ));
     }
 }
