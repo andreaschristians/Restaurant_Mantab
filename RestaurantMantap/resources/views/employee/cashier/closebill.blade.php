@@ -35,15 +35,14 @@
         font-style: italic;
         font-weight: bold;
       }
+
       .list-table{
-        height: 350px;
+        height: 330px;
         overflow: auto;
       }
-      .total{
+      .total-bill{
         width: 100%;
-        height: 60px;
-        border-bottom-left-radius: 10px;
-        border-bottom-right-radius: 10px;
+        height: 30px;
       }
       table{
         border-collapse: collapse;
@@ -77,6 +76,9 @@
         padding-left: 10px;
 
       }
+      #total-num{
+        margin-left: 885px;
+      }
       button{
         background-color: red; 
         width: 11%;
@@ -84,7 +86,7 @@
         border: none;
         color: white;
         margin-left: 87%;
-        margin-top: 1.3%;
+        margin-top: 6px;
         text-align: center;
         text-decoration: none;
         text-decoration-color: white;
@@ -163,15 +165,18 @@
                             <td id="qty">{{ $ordermenu->quantity }}</td>
                             <td id="price">IDR {{ $ordermenu->menu->price }}</td>
                             <td id="total">IDR {{ ($ordermenu->quantity) * ($ordermenu->menu->price) }}</td>
+                            <?php $total += ($ordermenu->quantity) * ($ordermenu->menu->price)?>
                         </tr>
                     @endforeach
                 </table>
             </div>
-
-            <a href="{{ route('employee.cashier.billstore', $order_id) }}" class="total">
-                <button>Close Bill</button>
-            </a>
+            <div class="total-bill">
+                <p id="total-num">IDR  <?php echo $total ?><p>
+            </div>
+              <a href="{{ route('employee.cashier.billstore', $order_id) }}" class="total">
+                  <button>Close Bill</button>
+              </a>
         </div>
     </div>
-</body>
+</body>   
 </html>

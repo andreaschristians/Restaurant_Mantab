@@ -121,7 +121,7 @@
             document.getElementById(id).style.background = "#8d8d8d";
             document.getElementById(id_a).removeAttribute("href");
             document.getElementById(id_a).style.opacity=0.5;
-        } else {
+        } else{
             document.getElementById(id).style.background = "#a60b00";
         }
 
