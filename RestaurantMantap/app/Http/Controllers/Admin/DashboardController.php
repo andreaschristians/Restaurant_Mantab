@@ -6,8 +6,6 @@ use App\Menu;
 use App\OrderMenu;
 use App\Order;
 use App\Bill;
-
-use App\Category;
 use App\Reservation;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -32,9 +30,10 @@ class DashboardController extends Controller
         
         $orders = Order::all();
         $bills = Bill::all();
+        $ordermenus = Ordermenu::all();
         $reservations = Reservation::where('status',false)->get();
 
-        return view('admin.dashboard',compact('menus','favoritemenu','favoritecount', 'bills', 'orders','reservations' ));
+        return view('admin.dashboard',compact('favoritemenu', 'favoritecount', 'bills', 'orders', 'reservations', 'ordermenus' ));
 
     }
 }
