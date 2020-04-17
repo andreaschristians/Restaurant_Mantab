@@ -42,8 +42,8 @@ class CashierController extends Controller
     //payment
     public function paytable()
     {
-        $tables = Table::all();
-        return view('employee.cashier.paytable', compact('tables'));
+        $orders = Order::all()->where('status', 0);
+        return view('employee.cashier.paytable', compact('orders'));
     }
     public function payment()
     {
