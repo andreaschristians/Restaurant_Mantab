@@ -124,6 +124,7 @@ class WaiterController extends Controller
         $reservation->status = 1;
         $reservation->save();
         
+
         $table = Table::find($request->table_number);
         $table->status = "Reserved";
         $table->save();
@@ -133,3 +134,4 @@ class WaiterController extends Controller
     }
     
 }
+

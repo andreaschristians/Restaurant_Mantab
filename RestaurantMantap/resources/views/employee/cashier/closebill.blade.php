@@ -54,8 +54,12 @@
         border-bottom: 2px solid #ddd;
         padding-top: 10px;
       }
+      #number{
+        border-right: 2px solid #ddd;
+      }
       #food{
-        padding-right: 555px;
+        padding-left: 20px;
+        padding-right: 500px;
         border-right: 2px solid #ddd;
       }
       #qty{
@@ -64,7 +68,7 @@
         border-right: 2px solid #ddd;
       }
       #price{
-        padding-right: 120px;
+        padding-right: 30px;
         padding-left: 10px;
         border-right: 2px solid #ddd;
       }
@@ -116,28 +120,24 @@
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-sm bg-warning navbar-dark" style="height: 100px; width: 100%; padding-top: 5.5%" >
-        <ul class="navbar-nav" style="margin-left: 16.2%;margin-top: 0.5%">
+    <nav class="navbar navbar-expand-sm bg-warning navbar-dark" style="height: 100px; width: 100%; padding-top: 80px" >
+        <ul class="navbar-nav" style="margin-left: 245px;margin-top: 10px">
             <li class="nav-item">
                 <img src="{{ asset('frontend/images/avatar.png') }}"class="mr-3 mt-3 rounded-circle" style="width:100px;position: relative;">
             </li>
             <li class="nav-item">
-                <ul class="nav flex-column" style="margin-top: 50%">
+                <ul class="nav flex-column" style="margin-top: 33px">
                     <li class="nav-item">
-                        <p class="font-weight-regular"><font size="4">
-                          nama
-                        </p>
+                        <p class="font-weight-regular"><font size="4">{{ Auth::guard('employee')->user()->name }}</font></p>
                     </li>
                     <li class="nav-item">
-                        <p class="font-weight-regular"><font size="4">
-                          cashier
-                        </p>
+                        <p class="font-weight-regular"><font size="4">{{ Auth::guard('employee')->user()->job }}</font></p>
                     </li>
                 </ul>
             </li>
           <li class="nav-item">
-            <a href="{{ route('employee.cashier.billing') }}">
-                <img src="{{ asset('frontend/images/back_arrow.png') }}" style="width: 50px;height: 50px;margin-left: 1700%;">
+            <a href="javascript:history.back()">
+                <img src="{{ asset('frontend/images/back_arrow.png') }}" style="width: 50px;height: 50px;margin-left: 1600%;">
             </a>
             <form id="logout-form" method="POST" action="{{ route('signout') }}" style="display: none">
                 @csrf
@@ -147,34 +147,31 @@
     </nav>
     
     <div class="list-bill" >
-      <p class="close-bill">Payment</p>
-      <div class="list-bill-show">
+        <p class="close-bill">Payment</p>
+        <div class="list-bill-show">
+            <div class="list-table">
+                <table>
+                    <th>No.</th>
+                    <th>Name</th>
+                    <th>Qty</th>
+                    <th>Price</th>
+                    <th>Total</th>
+                    @foreach($ordermenus as $key=>$ordermenu)
+                        <tr>
+                            <td id="number">{{ $key+1 }}. </td>
+                            <td id="food">{{ $ordermenu->menu->name }}</td>
+                            <td id="qty">{{ $ordermenu->quantity }}</td>
+                            <td id="price">IDR {{ $ordermenu->menu->price }}</td>
+                            <td id="total">IDR {{ ($ordermenu->quantity) * ($ordermenu->menu->price) }}</td>
+                        </tr>
+                    @endforeach
+                </table>
+            </div>
 
-        <div class="list-table">
-          <table>
-            <?php
-              for ($i = 1; $i <= 10; $i++) {
-                echo '
-                <tr>
-                  <td id="food">1.&nbspAsparagus</td>
-                  <td id="qty">1x</td>
-                  <td id="price">$100</td>
-                  <td id="total">$100</td>
-                </tr>
-                ';
-              }
-            ?>
-          </table>
-          </div>
-            
-          <div class="total">
-            <button>Close Bill</button>
-          </div>
-
-      </div>
-      <div>
-        
-      </div>
+            <a href="{{ route('employee.cashier.billstore', $order_id) }}" class="total">
+                <button>Close Bill</button>
+            </a>
+        </div>
     </div>
 </body>
 </html>

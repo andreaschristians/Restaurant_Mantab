@@ -147,7 +147,8 @@
         <div class="rsvd" style="background-color: grey;"></div>
     </div>
 
-    <div class="table-list" >
+        <div class="table-list" >
+            
         <div id="box">
             @foreach($tables as $key=>$table)
                 <a id="a-{{ $table->number }}"><div id="table-{{ $table->number }}" onclick="selectTable({{ $table->number }})" style="opacity: 0.5"> {{ $table->number }} </div></a>

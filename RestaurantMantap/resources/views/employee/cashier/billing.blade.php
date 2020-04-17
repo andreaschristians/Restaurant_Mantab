@@ -29,15 +29,6 @@
         border-radius: 10px;
         margin: auto;
       }
-      .table{
-        width: 7%;
-        height: 70px;
-        background-color: red;
-        margin-top: 1.5%;
-        margin-left: 5%;
-        margin-bottom: 3%;
-        display: inline-block;
-      }
       .sel-table{
         margin: 0;
         margin-left: 10%;
@@ -49,31 +40,51 @@
         text-decoration: none;
         color: red;
       }
+      #box {
+          position: relative;
+          margin: auto;
+          width: 80%;
+          height: 400px;
+/*          border: 2px solid #ffc107;*/
+        }
+
+      #box div[id*="table"] {
+          position : absolute;
+          width : 130px;
+          height : 80px;
+          z-index: 9;
+          background-color: #f1f1f1;
+          vertical-align: middle;
+          text-align: center;
+          line-height: 53px;  
+          font-size: 30;
+          border: 1px solid #d3d3d3;
+          padding: 10px;
+          z-index: 10;
+          color: #fff;
+          border-radius: 10px;
+      }
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-sm bg-warning navbar-dark" style="height: 100px; width: 100%; padding-top: 5.5%" >
-        <ul class="navbar-nav" style="margin-left: 16.2%;margin-top: 0.5%">
+    <nav class="navbar navbar-expand-sm bg-warning navbar-dark" style="height: 100px; width: 100%; padding-top: 80px" >
+        <ul class="navbar-nav" style="margin-left: 245px;margin-top: 10px">
             <li class="nav-item">
                 <img src="{{ asset('frontend/images/avatar.png') }}"class="mr-3 mt-3 rounded-circle" style="width:100px;position: relative;">
             </li>
             <li class="nav-item">
-                <ul class="nav flex-column" style="margin-top: 50%">
+                <ul class="nav flex-column" style="margin-top: 33px">
                     <li class="nav-item">
-                        <p class="font-weight-regular"><font size="4">
-                          nama
-                        </p>
+                        <p class="font-weight-regular"><font size="4">{{ Auth::guard('employee')->user()->name }}</font></p>
                     </li>
                     <li class="nav-item">
-                        <p class="font-weight-regular"><font size="4">
-                          cashier
-                        </p>
+                        <p class="font-weight-regular"><font size="4">{{ Auth::guard('employee')->user()->job }}</font></p>
                     </li>
                 </ul>
             </li>
           <li class="nav-item">
-            <a href="{{ route('employee.cashier.maincashier') }}">
-                <img src="{{ asset('frontend/images/back_arrow.png') }}" style="width: 50px;height: 50px;margin-left: 1700%;">
+            <a href="javascript:history.back()">
+                <img src="{{ asset('frontend/images/back_arrow.png') }}" style="width: 50px;height: 50px;margin-left: 1600%;">
             </a>
             <form id="logout-form" method="POST" action="{{ route('signout') }}" style="display: none">
                 @csrf
@@ -83,13 +94,46 @@
     </nav>
     
     <div class="bill-table" >
-      <p class="sel-table">Select Table</p>
-      <div class="bill-table-show">
-          <a href="{{ route('employee.cashier.closebill') }}">
-            <div class="table">
+        <p class="sel-table">Select Table</p>
+        <div class="bill-table-show">
+            <div id="box">
+                @foreach($tables as $key=>$table)
+                    <a id="a-{{ $table->number }}" href ="{{ route('employee.cashier.closebill', $table->number) }}"><div id="table-{{ $table->number }}" onclick="selectTable({ $key })"> {{ $table->number }} </div></a>
+                @endforeach
             </div>
-          </a>
-      </div>
+        </div>
     </div>
+
+
+ <script>
+
+    var tables = <?php echo json_encode($tables); ?>;
+    
+    tables.forEach(function(table){
+        var id = "table-" + table.number;
+        var id_a = "a-" + table.number
+        //table color
+        if (table.status == "Empty") {
+            document.getElementById(id).style.background = "#2d9e2f";
+            document.getElementById(id_a).removeAttribute("href");
+            document.getElementById(id_a).style.opacity=0.5;
+        } else if (table.status == "Reserved") {
+            document.getElementById(id).style.background = "#8d8d8d";
+            document.getElementById(id_a).removeAttribute("href");
+            document.getElementById(id_a).style.opacity=0.5;
+        } else {
+            document.getElementById(id).style.background = "#a60b00";
+        }
+
+        position(id, table.position_x, table.position_y);
+    });
+
+    //Table Position
+    function position(elmnt, pos_x, pos_y){
+        document.getElementById(elmnt).style.top = (pos_x+"px"); //y axis
+        document.getElementById(elmnt).style.left = (pos_y+"px"); //x axis
+    }
+
+  </script>
 </body>
 </html>
