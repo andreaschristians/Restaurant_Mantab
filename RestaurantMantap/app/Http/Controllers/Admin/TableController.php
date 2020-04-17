@@ -26,7 +26,12 @@ class TableController extends Controller
      */
     public function create()
     {
-        return view('admin.table.create');
+        $table = new Table();
+        $table->status = "Empty";
+        $table->position_x = "0";
+        $table->position_y = "0";
+        $table->save();
+        return redirect()->route('table.index')->with('successMsg','Table Successfully Saved');
     }
 
     /**
