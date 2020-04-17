@@ -48,7 +48,7 @@
 
   		}
   		.table2{
-			width: 170px;
+			  width: 170px;
   			height: 100px;
   			margin-right: 130px;
   			border-radius: 10%;
@@ -72,8 +72,8 @@
   			display: inline-block;
   		}
   		.legend{
-  			margin-left: 1280px;
-  			margin-top: 69px;
+  			margin-left: 1100px;
+  			margin-top: 40px;
   		}
   		.info-legend{
   			margin: 0;
@@ -107,7 +107,7 @@
 		   <li class="nav-item">
 			   	<a href="/employee/waiter/mainwaiter">
 			      	<img src="{{ asset('frontend/images/back_arrow.png') }}"
-			      	style="width: 50px;height: 50px;margin-left: 1000px;">
+			      	style="width: 50px;height: 50px;margin-left: 1700%;">
 			    </a>
 		   </li>
 		 </ul>

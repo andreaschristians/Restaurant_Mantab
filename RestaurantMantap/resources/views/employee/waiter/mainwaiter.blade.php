@@ -22,11 +22,11 @@
   		}
   		.choose1{
   			float: left;
-  			margin-left: 270px;
+  			margin-left: 180px;
           }
   		.choose2{
   			float: left;
-  			margin-left: 100px;
+  			margin-left: 130px;
   		}
   		.text-choose{
   			text-align: center;
@@ -38,7 +38,7 @@
   	</style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-sm bg-warning navbar-dark" style="height: 100px; width: 100%; padding-top: 80px" >
+    <nav class="navbar navbar-expand-sm bg-warning navbar-dark" style="height: 100px; width: 100%; padding-top: 5.5%" >
         <ul class="navbar-nav" style="margin-left: 245px;margin-top: 10px">
             <li class="nav-item">
                 <img src="{{ asset('frontend/images/avatar.png') }}"class="mr-3 mt-3 rounded-circle" style="width:100px;position: relative;">
@@ -55,7 +55,7 @@
             </li>
           <li class="nav-item">
             <a href="{{ route('signout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                <img src="{{ asset('frontend/images/back_arrow.png') }}" style="width: 50px;height: 50px;margin-left: 950px;">
+                <img src="{{ asset('frontend/images/sign_out.png') }}" style="width: 35px;height: 35px;margin-left: 2300%; margin-top: 10px;">
             </a>
             <form id="logout-form" method="POST" action="{{ route('signout') }}" style="display: none">
                 @csrf

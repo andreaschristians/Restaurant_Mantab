@@ -66,7 +66,7 @@
         padding-top: 10px;
       }
       #food{
-        padding-right: 400px;
+        padding-right: 370px;
         border-right: 2px solid #ddd;
       }
       #qty{
@@ -75,12 +75,12 @@
         border-right: 2px solid #ddd;
       }
       #price{
-        padding-right: 100px;
+        padding-right: 80px;
         padding-left: 10px;
         border-right: 2px solid #ddd;
       }
       #total{
-        padding-right: 100px;
+        padding-right: 80px;
         padding-left: 10px;
 
       }
@@ -134,8 +134,8 @@
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-sm bg-warning navbar-dark" style="height: 100px; width: 100%; padding-top: 5%" >
-        <ul class="navbar-nav" style="margin-left: 10%;margin-top: 0.5%">
+    <nav class="navbar navbar-expand-sm bg-warning navbar-dark" style="height: 100px; width: 100%; padding-top: 5.5%" >
+        <ul class="navbar-nav" style="margin-left: 16.2%;margin-top: 0.5%">
             <li class="nav-item">
                 <img src="{{ asset('frontend/images/avatar.png') }}"class="mr-3 mt-3 rounded-circle" style="width:100px;position: relative;">
             </li>
@@ -155,7 +155,7 @@
             </li>
           <li class="nav-item">
             <a href="{{ route('employee.cashier.paytable') }}">
-                <img src="{{ asset('frontend/images/back_arrow.png') }}" style="width: 50px;height: 50px;margin-left: 2200%;">
+                <img src="{{ asset('frontend/images/back_arrow.png') }}" style="width: 50px;height: 50px;margin-left: 1700%;">
             </a>
             <form id="logout-form" method="POST" action="{{ route('signout') }}" style="display: none">
                 @csrf
@@ -175,7 +175,7 @@
               for ($i = 1; $i <= 10; $i++) {
                 echo '
                 <tr id="list">
-                  <td id="food">1. Asparagus</td>
+                  <td id="food">1.&nbsp&nbspAsparagus</td>
                   <td id="qty">1x</td>
                   <td id="price">$100</td>
                   <td id="total">$100</td>

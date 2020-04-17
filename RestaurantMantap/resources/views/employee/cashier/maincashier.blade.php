@@ -12,21 +12,21 @@
   	<style>
   		.main-choose{
   			width: 80%; 
-  			height: 500px;
-  			background-color: rgba(0,0,0,0.07); 
-  			margin: auto; 
-  			margin-top: 6%;
-  			padding-top: 3%;
-  			border-radius: 10px;
-  			opacity: 90%;
+        height: 500px;
+        background-color: rgba(0,0,0,0.07); 
+        margin: auto; 
+        margin-top: 6%;
+        padding-top: 3%;
+        border-radius: 10px;
+        opacity: 90%;
   		}
   		.choose1{
   			float: left;
-  			margin-left: 18%;
+  			margin-left: 180px;
           }
   		.choose2{
   			float: left;
-  			margin-left: 10%;
+  			margin-left: 130px;
   		}
   		.text-choose{
   			text-align: center;
@@ -38,8 +38,8 @@
   	</style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-sm bg-warning navbar-dark" style="height: 100px; width: 100%; padding-top: 5%" >
-        <ul class="navbar-nav" style="margin-left: 10%;margin-top: 0.5%">
+    <nav class="navbar navbar-expand-sm bg-warning navbar-dark" style="height: 100px; width: 100%; padding-top: 5.5%" >
+        <ul class="navbar-nav" style="margin-left: 16.2%;margin-top: 0.5%">
             <li class="nav-item">
                 <img src="{{ asset('frontend/images/avatar.png') }}"class="mr-3 mt-3 rounded-circle" style="width:100px;position: relative;">
             </li>
@@ -58,9 +58,8 @@
                 </ul>
             </li>
           <li class="nav-item">
-<!--             <a href="{{ route('signout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"> -->
-            <a href="#">
-                <img src="{{ asset('frontend/images/back_arrow.png') }}" style="width: 50px;height: 50px;margin-left: 2200%;">
+            <a href="{{ route('signout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                <img src="{{ asset('frontend/images/sign_out.png') }}" style="width: 35px;height: 35px;margin-left: 2500%; margin-top: 10px;">
             </a>
             <form id="logout-form" method="POST" action="{{ route('signout') }}" style="display: none">
                 @csrf
