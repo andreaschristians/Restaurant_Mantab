@@ -38,8 +38,6 @@ Route::group(['prefix'=>'employee','middleware'=>'employee','namespace'=>'Employ
     Route::get('cashier/payment','CashierController@payment')->name('employee.cashier.payment');
 });
 
-
-
 Auth::routes();
 
 //login for admin
