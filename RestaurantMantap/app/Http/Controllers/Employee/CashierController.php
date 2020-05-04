@@ -78,18 +78,23 @@ class CashierController extends Controller
         $payment->change = ($request->amount - $request->total);
         $payment->bill_id = $request->bill_id;
         $payment->save();
-        
-        $tablenumber = Order::where('id', $request->order_id)->first()->table_number;
-        
-        $table = Table::find($tablenumber);
-        $table->status = "Empty";
-        $table->save();
-        
-        $order = Order::find($request->order_id);
-        $order->status = "Paid";
-        $order->save();
-        
-        return redirect()->route('employee.cashier.maincashier'); 
+        if($request->amount >= $request->total){
+            $tablenumber = Order::where('id', $request->order_id)->first()->table_number;
+            
+            $table = Table::find($tablenumber);
+            $table->status = "Empty";
+            $table->save();
+            
+            $order = Order::find($request->order_id);
+            $order->status = "Paid";
+            $order->save();
+            
+            return redirect()->route('employee.cashier.maincashier'); 
+    }else{
+        return redirect()->route('employee.cashier.paytable'); 
+        $message = "wrong answer";
+        echo "<script type='text/javascript'>alert('$message');</script>";
+    }
     }
 }
 

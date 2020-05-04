@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title','Signin')
+@section('title','Employee Sign In')
 
 @push('css')
 
