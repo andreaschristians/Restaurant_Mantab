@@ -254,10 +254,11 @@
               document.getElementById("amount").value = amountvalue;
               if(amountvalue<{{ $total }}){
                 document.getElementById("boxhasil").innerHTML = "Uang Kurang "+({{$total}}-amountvalue);
-                document.getElementById("submitbutton").innerHTML = "Coba Lagi";
-                console.log("Pembayaran Gagal! Coba lagi!")
+                document.getElementById(("submitbutton")).style.display="none"
               }else{
                 document.getElementById("boxhasil").innerHTML = "Kembalian "+(amountvalue-{{$total}});
+                document.getElementById(("submitbutton")).style.display="block"
+                document.getElementById("submitbutton").innerHTML = "Print";
               }
               modal.style.display = "block";
             }
