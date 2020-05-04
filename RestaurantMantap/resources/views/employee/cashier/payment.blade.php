@@ -201,18 +201,78 @@
     
       <div class="input-cash">
         <p id="pay">Amount</p>
-        <form id="payment" method="POST" action="{{ route('employee.cashier.paymentstore') }}">
+        <form id="payment" method="POST"
+         action=""
+        >
              @csrf
-            <input type="number" name="amount">
+            <input id="myInput" type="number" name="inputamount">
             <br>
             <p id="total-pay">Total</p>
             <input type="text" value="{{ $total }}" name="total"readonly>
-            <input type="hidden" value="{{ $bill_id }}" name="bill_id">
-            <input type="hidden" value="{{ $order_id }}" name="order_id">
-            <button type="submit">Print</button>
+            <br><br>
+            <a id="detailBtn"><b>Pay</b></a>
+            <!-- <button type="submit">Print</button> -->
             
         </form>
       </div>
     </div>
+
+    <!--PopUp-->
+    <!-- The Modal -->
+    <div style="margin-top:20%;margin-left:25%;width:50%;" id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+        <p id="boxhasil"></p>
+        <p id="pay">Amount</p>
+        <form id="payment" method="POST" action="{{ route('employee.cashier.paymentstore') }}">
+             @csrf
+            <input type="number" id="amount" name="amount" readonly>
+            <br>
+            <p id="total-pay">Total</p>
+            <input id="total" type="text" value="{{ $total }}" name="total" readonly>
+            <input type="hidden" value="{{ $bill_id }}" name="bill_id">
+            <input type="hidden" value="{{ $order_id }}" name="order_id">
+            <br><br>
+            <button id="submitbutton" type="submit">Print</button>
+            
+        </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    
+    //PopUp
+            // Get the modal
+            var modal = document.getElementById(("myModal"));
+            // Get the button that opens the modal
+            var btn = document.getElementById(("detailBtn"));
+            // Get the <span> element that closes the modal
+            var span = document.getElementsByClassName(("closeBtnini"));
+            // When the user clicks the button, open the modal 
+            btn.onclick = function() {
+              var amountvalue = $("#myInput").val();
+              document.getElementById("amount").value = amountvalue;
+              if(amountvalue<{{ $total }}){
+                document.getElementById("boxhasil").innerHTML = "Kurang";
+                document.getElementById("submitbutton").innerHTML = "Coba Lagi";
+                console.log("Pembayaran Gagal! Coba lagi!")
+              }else{
+                document.getElementById("boxhasil").innerHTML = "Kembalian "+({{$total}}-amountvalue);
+              }
+              modal.style.display = "block";
+            }
+            // When the user clicks on <span> (x), close the modal
+            span.onclick = function() {
+              modal.style.display = "none";
+            }
+            // When the user clicks anywhere outside of the modal, close it
+//            window.onclick = function(event) {
+//              if (event.target == modal) {
+//                modal.style.display = "none";
+//                console.log("test");
+//              }
+//            }
+    </script>
 </body>
 </html>
