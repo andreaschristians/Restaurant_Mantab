@@ -172,11 +172,11 @@
     span[class*="closeBtn"] {
         color: #e53935;
         float: right;
-        box-sizing: border-box;
         font-size: 28px;
         font-weight: bold;
+        margin-left: auto;
+        line-height: 21px;
     }
-    
     a[id*="detailBtn"] {
         cursor: pointer;
     }
@@ -186,9 +186,12 @@
         color: #0069d9;
         cursor: pointer;
     }
+    #boxhasil {
+        font-size: 28px;
+        text-align: center;
+    }
     </style>
 </head>
-<body>
     <nav class="navbar navbar-expand-sm bg-warning navbar-dark" style="height: 100px; width: 100%; padding-top: 80px" >
         <ul class="navbar-nav" style="margin-left: 245px;margin-top: 10px">
             <li class="nav-item">
@@ -261,17 +264,19 @@
         <!-- Modal content -->
         <div class="modal-content">
             <span class="closeBtn">&times;</span>
-            <p id="boxhasil"></p>
-            <form id="payment" method="POST" action="{{ route('employee.cashier.paymentstore') }}">
-                @csrf
-                <input type="hidden" id="amount" name="amount" readonly>
-                <br>
-                <input id="total" type="hidden" value="{{ $total }}" name="total" readonly>
-<!--                <input type="hidden" value="{{ $bill_id }}" name="bill_id">
-                <input type="hidden" value="{{ $order_id }}" name="order_id">-->
-                <br><br>
-                <button id="submitbutton" type="submit">Print</button>
-            </form>
+            <div class="card-content table-responsive">
+                <p id="boxhasil"></p>
+                <form id="payment" method="POST" action="{{ route('employee.cashier.paymentstore') }}">
+                    @csrf
+                    <input type="hidden" id="amount" name="amount" readonly>
+                    <br>
+                    <input id="total" type="hidden" value="{{ $total }}" name="total" readonly>
+                    <input type="hidden" value="{{ $bill_id }}" name="bill_id">
+                    <input type="hidden" value="{{ $order_id }}" name="order_id">
+                    <br><br>
+                    <button id="submitbutton" type="submit">Print</button>
+                </form>
+            </div>
         </div>
     </div>
 
@@ -310,5 +315,4 @@
       }
     }
     </script>
-</body>
 </html>
