@@ -6,10 +6,10 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
-    <style>
+<style>
       .list-bill{
         width: 80%; 
         height: 500px;
@@ -143,7 +143,49 @@
       ::-webkit-scrollbar-thumb:hover {
         background: #555; 
       }
+      
+    /* The Modal (background) */
+    div[id*="myModal"] {
+      display: none; /* Hidden by default */
+      position: fixed; /* Stay in place */
+      z-index: 1; /* Sit on top */
+      padding-top: 100px; /* Location of the box */
+      left: 0;
+      top: 0;
+      width: 100%; /* Full width */
+      height: 100%; /* Full height */
+      overflow: auto; /* Enable scroll if needed */
+      background-color: rgb(0,0,0); /* Fallback color */
+      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
 
+    /* Modal Content */
+    .modal-content {
+        background-color: #fefefe;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 50%;
+    }
+
+    /* The Close Button */
+    span[class*="closeBtn"] {
+        color: #e53935;
+        float: right;
+        box-sizing: border-box;
+        font-size: 28px;
+        font-weight: bold;
+    }
+    
+    a[id*="detailBtn"] {
+        cursor: pointer;
+    }
+    
+    span[class*="closeBtn"]:hover,
+    span[class*="closeBtn"]:focus {
+        color: #0069d9;
+        cursor: pointer;
+    }
     </style>
 </head>
 <body>
@@ -174,106 +216,99 @@
     </nav>
     
     <div class="list-bill" >
-      <p class="close-bill">Payment</p>
-      <div class="list-bill-show">
+        <p class="close-bill">Payment</p>
+        <div class="list-bill-show">
 
-        <div class="list-table">
-            <table>
-                <th>No.</th>
-                <th>Name</th>
-                <th>Qty</th>
-                <th>Price</th>
-                <th>Total</th>
-                @foreach($ordermenus as $key=>$ordermenu)
-                    <tr>
-                        <td id="number">{{ $key+1 }}. </td>
-                        <td id="food">{{ $ordermenu->menu->name }}</td>
-                        <td id="qty">{{ $ordermenu->quantity }}</td>
-                        <td id="price">IDR&nbsp&nbsp{{ $ordermenu->menu->price }}</td>
-                        <td id="total">IDR&nbsp&nbsp{{ ($ordermenu->quantity) * ($ordermenu->menu->price) }}</td>
-                        <?php $total += ($ordermenu->quantity) * ($ordermenu->menu->price) ?>
-                    </tr>
-                @endforeach
-            </table>
+            <div class="list-table">
+                <table>
+                    <th>No.</th>
+                    <th>Name</th>
+                    <th>Qty</th>
+                    <th>Price</th>
+                    <th>Total</th>
+                    @foreach($ordermenus as $key=>$ordermenu)
+                        <tr>
+                            <td id="number">{{ $key+1 }}. </td>
+                            <td id="food">{{ $ordermenu->menu->name }}</td>
+                            <td id="qty">{{ $ordermenu->quantity }}</td>
+                            <td id="price">IDR&nbsp&nbsp{{ $ordermenu->menu->price }}</td>
+                            <td id="total">IDR&nbsp&nbsp{{ ($ordermenu->quantity) * ($ordermenu->menu->price) }}</td>
+                            <?php $total += ($ordermenu->quantity) * ($ordermenu->menu->price) ?>
+                        </tr>
+                    @endforeach
+                </table>
+            </div>
         </div>
-
-      </div>
     
-      <div class="input-cash">
-        <p id="pay">Amount</p>
-        <form id="payment" method="POST"
-         action=""
-        >
-             @csrf
-            <input value=0 id="myInput" type="number" name="inputamount">
-            <br>
-            <p id="total-pay">Total</p>
-            <input type="text" value="{{ $total }}" name="total"readonly>
-            <br><br>
-            <a id="detailBtn"><b>Pay</b></a>
-            <!-- <button type="submit">Print</button> -->
-            
-        </form>
-      </div>
+        <div class="input-cash">
+            <p id="pay">Amount</p>
+            <form id="payment" method="POST" action="">
+                @csrf
+                <input value=0 id="myInput" type="number" name="inputamount">
+                <br>
+                <p id="total-pay">Total</p>
+                <input type="text" value="{{ $total }}" name="total"readonly>
+                <br><br>
+                <a id="detailBtn"><b>Pay</b></a>
+                <!-- <button type="submit">Print</button> -->
+            </form>
+        </div>
     </div>
 
     <!--PopUp-->
     <!-- The Modal -->
-    <div style="margin-top:20%;margin-left:25%;width:30%;" id="myModal" class="modal">
+    <div id="myModal" class="modal">
         <!-- Modal content -->
-        <div class="modal-content" style="padding:10%;border-color:orange;text-align: center;">
-        <span id="closeBtnini" style="color:red;text-align:left;">x</span>
-        <p id="boxhasil"></p>
-        <form id="payment" method="POST" action="{{ route('employee.cashier.paymentstore') }}">
-             @csrf
-            <input type="hidden" id="amount" name="amount" readonly>
-            <br>
-            <input id="total" type="hidden" value="{{ $total }}" name="total" readonly>
-            <input type="hidden" value="{{ $bill_id }}" name="bill_id">
-            <input type="hidden" value="{{ $order_id }}" name="order_id">
-            <br><br>
-            <button id="submitbutton" type="submit">Print</button>
-            
-        </form>
-            </div>
+        <div class="modal-content">
+            <span class="closeBtn">&times;</span>
+            <p id="boxhasil"></p>
+            <form id="payment" method="POST" action="{{ route('employee.cashier.paymentstore') }}">
+                @csrf
+                <input type="hidden" id="amount" name="amount" readonly>
+                <br>
+                <input id="total" type="hidden" value="{{ $total }}" name="total" readonly>
+<!--                <input type="hidden" value="{{ $bill_id }}" name="bill_id">
+                <input type="hidden" value="{{ $order_id }}" name="order_id">-->
+                <br><br>
+                <button id="submitbutton" type="submit">Print</button>
+            </form>
         </div>
     </div>
 
-    <script>
+<script>
     
     //PopUp
-            // Get the modal
-            var modal = document.getElementById(("myModal"));
-            // Get the button that opens the modal
-            var btn = document.getElementById(("detailBtn"));
-            // Get the <span> element that closes the modal
-            var span = document.getElementById(("closeBtnini"));
-            // When the user clicks the button, open the modal 
-            btn.onclick = function() {
-              var amountvalue = $("#myInput").val();
-              document.getElementById("amount").value = amountvalue;
-              if(amountvalue<{{ $total }}){
-                document.getElementById("boxhasil").innerHTML = "Uang Kurang "+({{$total}}-amountvalue);
-                document.getElementById(("submitbutton")).style.display="none"
-              }else{
-                document.getElementById("boxhasil").innerHTML = "Kembalian "+(amountvalue-{{$total}});
-                document.getElementById(("submitbutton")).style.display="block"
-                document.getElementById("submitbutton").innerHTML = "Print";
-              }
-              modal.style.display = "block";
-            }
-            // When the user clicks on <span> (x), close the modal
-            span.onclick = function() {
-              modal.style.display = "none";
-              console.log("test");
-            }
-            // When the user clicks anywhere outside of the modal, close it
-//            window.onclick = function(event) {
-//              if (event.target == modal) {
-//                modal.style.display = "none";
-//                console.log("test");
-//              }
-//            }
+    // Get the modal
+    var modal = document.getElementById(("myModal"));
+    // Get the button that opens the modal
+    var btn = document.getElementById(("detailBtn"));
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("closeBtn")[0];
+    // When the user clicks the button, open the modal 
+    btn.onclick = function() {
+        var amountvalue = $("#myInput").val();
+        document.getElementById("amount").value = amountvalue;
+        if(amountvalue<{{ $total }}){
+            document.getElementById("boxhasil").innerHTML = "Uang Kurang "+({{$total}}-amountvalue);
+            document.getElementById(("submitbutton")).style.display="none"
+        }else{
+            document.getElementById("boxhasil").innerHTML = "Kembalian "+(amountvalue-{{$total}});
+            document.getElementById(("submitbutton")).style.display="block"
+            document.getElementById("submitbutton").innerHTML = "Print";
+        }
+        modal.style.display = "block";
+    }
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+//    When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+        console.log("test");
+      }
+    }
     </script>
 </body>
 </html>
