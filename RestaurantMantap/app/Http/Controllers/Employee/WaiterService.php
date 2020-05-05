@@ -1,8 +1,12 @@
 <?php
+namespace App\Http\Controllers\Employee;
+
+use App\Table;
+use App\Reservation;
+use App\Http\Controllers\Controller;
 
 class WaiterService extends Controller
 {
-    
     public function reserveStoreFacade($name, $date_and_time, $table_number){
         $reservation = new Reservation();
         $reservation->name = $name;
@@ -16,5 +20,4 @@ class WaiterService extends Controller
         $table->save();
     }
 }
-
 ?>
