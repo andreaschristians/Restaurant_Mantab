@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
+
 class WaiterController extends Controller
 {
     /**
@@ -117,18 +118,10 @@ class WaiterController extends Controller
             'date_and_time' => 'required',
             'table_number' => 'required',
         ]);
-        $reservation = new Reservation();
-        $reservation->name = $request->name;
-        $reservation->date_and_time = $request->date_and_time;
-        $reservation->table_number = $request->table_number;
-        $reservation->status = 1;
-        $reservation->save();
         
+        $waiterService = new WaiterService();
+        $waiterService->reserveStoreFacade($request->name, $request->date_and_time, $request->table_number);
 
-        $table = Table::find($request->table_number);
-        $table->status = "Reserved";
-        $table->save();
-        
         return redirect()->route('employee.waiter.mainwaiter');
         echo $request->table_number;
     }
