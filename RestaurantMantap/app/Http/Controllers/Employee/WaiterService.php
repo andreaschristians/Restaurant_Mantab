@@ -3,6 +3,7 @@ namespace App\Http\Controllers\Employee;
 
 use App\Table;
 use App\Order;
+use App\Ordermenu;
 use App\Reservation;
 use App\Http\Controllers\Controller;
 
