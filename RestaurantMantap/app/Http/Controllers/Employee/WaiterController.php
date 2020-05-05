@@ -47,63 +47,42 @@ class WaiterController extends Controller
         $categories = Category::all();
         $menus = Menu::all();
         
-        if ($tableStatus == "Empty") {
-            $order = new Order();
-            $table = Table::find($tableNumber);
-            
-            $order->status = "Open";
-            $order->employee_id = $employeeId;
-            $order->table_number = $tableNumber;
-            $order->save();
-            
-            $table->status = "Occupied";
-            $table->save();
-        } else if ($tableStatus == "Reserved") {
-            $order = new Order();
-            $table = Table::find($tableNumber);
-            $reservation = Reservation::where('table_number', $tableNumber)->where('status', 1)->first();
-            
-            $order->status = "Open";
-            $order->employee_id = $employeeId;
-            $order->table_number = $tableNumber;
-            $order->save();
-            
-            $table->status = "Occupied";
-            $table->save();
-            
-            $reservation->status = 0;
-            $reservation->save();
-        }
+        $waiterService = new WaiterService();
+        $waiterService->orderFacade($tableNumber, $tableStatus, $employeeId);
         
         $order = Order::where('status', "Open")->where('table_number', $tableNumber)->first()->id;
         $ordermenus = Ordermenu::where('order_id', $order)->get();
         return view('employee.waiter.ordermenu' ,compact('categories', 'menus', 'order', 'ordermenus'));
     }
+
     public function ordermenu(Request $request) 
     {
-        $menus = Menu::all();
-        foreach($menus as $key=>$menu) {
-            $ordermenucheck = Ordermenu::where('menu_id', $menu->id)->where('order_id', $request->order_id)->first();
-            if ($ordermenucheck != null) {
-                if ($request->qty[$key] == 0) {
-                    Ordermenu::find($ordermenucheck->id)->delete();
-                } else {
-                    $ordermenu = Ordermenu::find($ordermenucheck->id);
-                    $ordermenu->quantity = $request->qty[$key];
-                    $ordermenu->menu_id = $menu->id;
-                    $ordermenu->order_id = $request->order_id;
-                    $ordermenu->save();
-                }
-            } else if ($request->qty[$key] == 0) {
+        $waiterService = new WaiterService();
+        $waiterService->orderMenuFacade($request->order_id, $request->qty);
+
+        // $menus = Menu::all();
+        // foreach($menus as $key=>$menu) {
+        //     $ordermenucheck = Ordermenu::where('menu_id', $menu->id)->where('order_id', $request->order_id)->first();
+        //     if ($ordermenucheck != null) {
+        //         if ($request->qty[$key] == 0) {
+        //             Ordermenu::find($ordermenucheck->id)->delete();
+        //         } else {
+        //             $ordermenu = Ordermenu::find($ordermenucheck->id);
+        //             $ordermenu->quantity = $request->qty[$key];
+        //             $ordermenu->menu_id = $menu->id;
+        //             $ordermenu->order_id = $request->order_id;
+        //             $ordermenu->save();
+        //         }
+        //     } else if ($request->qty[$key] == 0) {
                 
-            } else if ($ordermenucheck == null){
-                $ordermenu = new Ordermenu();
-                $ordermenu->quantity = $request->qty[$key];
-                $ordermenu->menu_id = $menu->id;
-                $ordermenu->order_id = $request->order_id;
-                $ordermenu->save();
-            } 
-        }
+        //     } else if ($ordermenucheck == null){
+        //         $ordermenu = new Ordermenu();
+        //         $ordermenu->quantity = $request->qty[$key];
+        //         $ordermenu->menu_id = $menu->id;
+        //         $ordermenu->order_id = $request->order_id;
+        //         $ordermenu->save();
+        //     } 
+        // }
         return redirect()->route('employee.waiter.mainwaiter');    
     }
     
