@@ -42,6 +42,7 @@ class CashierController extends Controller
         $order_id = Order::where('table_number', $table_number)->where('status', "Open")->first()->id;
         $ordermenus = Ordermenu::where('order_id', $order_id)->get();
         $total = 0;
+        
         return view('employee.cashier.closebill', compact('ordermenus', 'order_id', 'total'));
 
     }

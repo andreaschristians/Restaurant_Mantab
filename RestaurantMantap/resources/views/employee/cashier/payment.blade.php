@@ -75,7 +75,8 @@
       }
       #food{
         padding-left: 10px;
-        padding-right: 400px;
+        padding-right: 275px;
+        padding-bottom: 10px;
         border-right: 2px solid #ddd;
       }
       #qty{
@@ -245,16 +246,14 @@
     
         <div class="input-cash">
             <p id="pay">Amount</p>
-            <form id="payment" method="POST" action="">
                 @csrf
                 <input value=0 id="myInput" type="number" name="inputamount">
                 <br>
                 <p id="total-pay">Total</p>
                 <input type="text" value="{{ $total }}" name="total"readonly>
                 <br><br>
-                <a id="detailBtn"><b>Pay</b></a>
+                <button id="detailBtn"><b>Pay</b></button>
                 <!-- <button type="submit">Print</button> -->
-            </form>
         </div>
     </div>
 

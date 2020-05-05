@@ -1,4 +1,5 @@
 <?php
+namespace App\Http\Controllers\Employee;
 
 use App\Payment;
 use App\Order;
@@ -37,6 +38,10 @@ class CashierService extends Controller
         $bill->charge = $total;
         $bill->order_id = $order_id;
         $bill->save();
+        
+        $table = Table::find($order->table_number);
+        $table->status = "Closed";
+        $table->save();
     }
 }
 

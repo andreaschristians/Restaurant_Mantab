@@ -116,6 +116,10 @@
             document.getElementById(id).style.background = "#8d8d8d";
         } else {
             document.getElementById(id).style.background = "#a60b00";
+            if (table.status == "Closed") {
+                document.getElementById(id_a).removeAttribute("href");
+                document.getElementById(id_a).style.opacity=0.5;
+            }
         }
 
         position(id, table.position_x, table.position_y);
