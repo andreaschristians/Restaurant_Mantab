@@ -1,6 +1,8 @@
 <?php
 
 use App\Payment;
+use App\Order;
+use App\Table;
 use App\Bill;
 use App\Http\Controllers\Controller;
 
