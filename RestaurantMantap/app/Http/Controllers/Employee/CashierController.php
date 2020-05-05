@@ -12,6 +12,7 @@ use App\Payment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Employee\CashierService;
 
 class CashierController extends Controller
 {
@@ -45,14 +46,16 @@ class CashierController extends Controller
 
     }
     public function billstore($order_id, $total) {
-        $order = Order::find($order_id);
-        $order->status = "Close";
-        $order->save();
+        $cashierService = new CashierService();
+        $cashierService->billStoreFacade($order_id, $total);
+        // $order = Order::find($order_id);
+        // $order->status = "Close";
+        // $order->save();
         
-        $bill = new Bill();
-        $bill->charge = $total;
-        $bill->order_id = $order_id;
-        $bill->save();
+        // $bill = new Bill();
+        // $bill->charge = $total;
+        // $bill->order_id = $order_id;
+        // $bill->save();
         
         return redirect()->route('employee.cashier.maincashier'); 
     }
@@ -73,21 +76,24 @@ class CashierController extends Controller
     }
     public function paymentstore(Request $request)
     {
-        $payment = new Payment();
-        $payment->amount = $request->amount;
-        $payment->change = ($request->amount - $request->total);
-        $payment->bill_id = $request->bill_id;
-        $payment->save();
+        $cashierService = new CashierService();
+        $cashierService->paymentStoreFacade($request->amount, $request->total, $request->bill_id, $request->order_id);
+
+        // $payment = new Payment();
+        // $payment->amount = $request->amount;
+        // $payment->change = ($request->amount - $request->total);
+        // $payment->bill_id = $request->bill_id;
+        // $payment->save();
         if($request->amount >= $request->total){
-            $tablenumber = Order::where('id', $request->order_id)->first()->table_number;
+            // $tablenumber = Order::where('id', $request->order_id)->first()->table_number;
             
-            $table = Table::find($tablenumber);
-            $table->status = "Empty";
-            $table->save();
+            // $table = Table::find($tablenumber);
+            // $table->status = "Empty";
+            // $table->save();
             
-            $order = Order::find($request->order_id);
-            $order->status = "Paid";
-            $order->save();
+            // $order = Order::find($request->order_id);
+            // $order->status = "Paid";
+            // $order->save();
             
             return redirect()->route('employee.cashier.maincashier'); 
     }else{
